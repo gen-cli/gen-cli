@@ -18,7 +18,7 @@ import { useShellHistory } from '../hooks/useShellHistory.js';
 import { useCompletion } from '../hooks/useCompletion.js';
 import { isAtCommand, isSlashCommand } from '../utils/commandUtils.js';
 import { SlashCommand } from '../hooks/slashCommandProcessor.js';
-import { Config } from '@google/gemini-cli-core';
+import { Config } from '@siliconflow/si-cli-core';
 
 export interface InputPromptProps {
   buffer: TextBuffer;

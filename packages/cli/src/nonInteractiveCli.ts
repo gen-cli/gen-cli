@@ -11,7 +11,7 @@ import {
   ToolRegistry,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-} from '@google/gemini-cli-core';
+} from '@siliconflow/si-cli-core';
 import {
   Content,
   Part,

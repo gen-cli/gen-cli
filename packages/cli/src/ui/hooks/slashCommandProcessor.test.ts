@@ -68,7 +68,7 @@ import {
   getMCPDiscoveryState,
   getMCPServerStatus,
   GeminiClient,
-} from '@google/gemini-cli-core';
+} from '@siliconflow/si-cli-core';
 import { useSessionStats } from '../contexts/SessionContext.js';
 import { LoadedSettings } from '../../config/settings.js';
 import * as ShowMemoryCommandModule from './useShowMemoryCommand.js';
@@ -689,7 +689,7 @@ describe('useSlashCommandProcessor', () => {
   describe('/mcp command', () => {
     beforeEach(() => {
       // Mock the core module with getMCPServerStatus and getMCPDiscoveryState
-      vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+      vi.mock('@siliconflow/si-cli-core', async (importOriginal) => {
         const actual = await importOriginal();
         return {
           ...actual,

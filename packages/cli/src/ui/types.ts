@@ -7,7 +7,7 @@
 import {
   ToolCallConfirmationDetails,
   ToolResultDisplay,
-} from '@google/gemini-cli-core';
+} from '@siliconflow/si-cli-core';
 import { CumulativeStats } from './contexts/SessionContext.js';
 
 // Only defining the state enum needed by the UI

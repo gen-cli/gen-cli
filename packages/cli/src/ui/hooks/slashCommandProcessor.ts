@@ -18,7 +18,7 @@ import {
   MCPServerStatus,
   getMCPDiscoveryState,
   getMCPServerStatus,
-} from '@google/gemini-cli-core';
+} from '@siliconflow/si-cli-core';
 import { useSessionStats } from '../contexts/SessionContext.js';
 import {
   Message,

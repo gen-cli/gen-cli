@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { AuthType } from '@google/gemini-cli-core';
+import { AuthType } from '@siliconflow/si-cli-core';
 import { loadEnvironment } from './config.js';
 
 export const validateAuthMethod = (authMethod: string): string | null => {

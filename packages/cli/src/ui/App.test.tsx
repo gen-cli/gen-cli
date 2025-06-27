@@ -14,7 +14,7 @@ import {
   ToolRegistry,
   AccessibilitySettings,
   SandboxConfig,
-} from '@google/gemini-cli-core';
+} from '@siliconflow/si-cli-core';
 import { LoadedSettings, SettingsFile, Settings } from '../config/settings.js';
 import process from 'node:process';
 
@@ -69,9 +69,9 @@ interface MockServerConfig {
 }
 
 // Mock @google/gemini-cli-core and its Config class
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@siliconflow/si-cli-core', async (importOriginal) => {
   const actualCore =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@siliconflow/si-cli-core')>();
   const ConfigClassMock = vi
     .fn()
     .mockImplementation((optionsPassedToConstructor) => {
