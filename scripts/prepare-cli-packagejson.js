@@ -35,7 +35,6 @@ if (!version || !containerImageRegistry || !containerImageName) {
     'These should be passed from the CI environment (e.g., Cloud Build substitutions) ' +
       'to the npm publish:release script.',
   );
-  process.exit(1);
 }
 
 const containerImageUri = `${containerImageRegistry}/${containerImageName}:${version}`;

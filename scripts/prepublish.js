@@ -19,9 +19,9 @@ if (!fs.existsSync(packageJsonPath)) {
   errors.push(`Error: package.json not found in ${process.cwd()}`);
 } else {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-  if (packageJson.repository !== 'google-gemini/gemini-cli') {
+  if (packageJson.repository !== 'siliconflow/si-cli') {
     errors.push(
-      `Error: The "repository" field in ${packageJsonPath} must be "google-gemini/gemini-cli".`,
+      `Error: The "repository" field in ${packageJsonPath} must be "siliconflow/si-cli".`,
     );
   }
 }

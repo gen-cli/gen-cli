@@ -6,7 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "gemini": "dist/index.js"
+    "si": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
@@ -27,10 +27,10 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "gemini-cli-sandbox"
+    "sandboxImageUri": "undefined/undefined:0.1.5"
   },
   "dependencies": {
-    "@siliconflow/si-cli-core": "*",
+    "@siliconflow/si-cli-core": "0.1.5",
     "@types/update-notifier": "^6.0.8",
     "command-exists": "^1.2.9",
     "diff": "^7.0.0",
