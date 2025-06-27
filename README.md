@@ -1,55 +1,27 @@
-# Gemini CLI
+# SiliconFlow CLI
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
-
-![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
-
-This repository contains the Gemini CLI, a command-line AI workflow tool that connects to your
-tools, understands your code and accelerates your workflows.
-
-With the Gemini CLI you can:
-
-- Query and edit large codebases in and beyond Gemini's 1M token context window.
-- Generate new apps from PDFs or sketches, using Gemini's multimodal capabilities.
-- Automate operational tasks, like querying pull requests or handling complex rebases.
-- Use tools and MCP servers to connect new capabilities, including [media generation with Imagen,
-  Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
-- Ground your queries with the [Google Search](https://ai.google.dev/gemini-api/docs/grounding)
-  tool, built in to Gemini.
+forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
 ## Quickstart
 
 1. **Prerequisites:** Ensure you have [Node.js version 18](https://nodejs.org/en/download) or higher installed.
-2. **Run the CLI:** Execute the following command in your terminal:
+2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key.
 
    ```bash
-   npx https://github.com/google-gemini/gemini-cli
+   export SILICONFLOW_API_KEY="YOUR_API_KEY"
+   ```
+3. **Run the CLI:** Execute the following command in your terminal:
+
+   ```bash
+   npx https://github.com/siliconflow/si-cli
    ```
 
    Or install it with:
 
    ```bash
-   npm install -g @google/gemini-cli
-   gemini
+   npm install -g @siliconflow/si-cli
+   si
    ```
-
-3. **Pick a color theme**
-4. **Authenticate:** When prompted, sign in with your personal Google account. This will grant you up to 60 model requests per minute and 1,000 model requests per day using Gemini.
-
-You are now ready to use the Gemini CLI!
-
-### For advanced use or increased limits:
-
-If you need to use a specific model or require a higher request capacity, you can use an API key:
-
-1. Generate a key from [Google AI Studio](https://aistudio.google.com/apikey).
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key.
-
-   ```bash
-   export GEMINI_API_KEY="YOUR_API_KEY"
-   ```
-
-For other authentication methods, including Google Workspace accounts, see the [authentication](./docs/cli/authentication.md) guide.
 
 ## Examples
 
@@ -66,9 +38,9 @@ gemini
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
+git clone https://github.com/siliconflow/si-cli
+cd si-cli
+si
 > Give me a summary of all of the changes that went in yesterday
 ```
 
