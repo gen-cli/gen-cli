@@ -12,7 +12,8 @@ import {
 } from '@google/genai';
 import OpenAI from 'openai';
 import { ContentGenerator } from './contentGenerator.js';
-const DEFAULT_SILICONFLOW_MODEL = 'siliconflow-ai/SiliconFlow-V3';
+import { jsonrepair } from 'jsonrepair';
+const DEFAULT_SILICONFLOW_MODEL = 'deepseek-ai/SiliconFlow-V3';
 
 const SILICONFLOW_BASE_URL = 'https://api.siliconflow.cn';
 
@@ -202,7 +203,7 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
             parts: choice.message.tool_calls.map((toolCall) => ({
               functionCall: {
                 name: toolCall.function.name,
-                args: JSON.parse(toolCall.function.arguments),
+                args: JSON.parse(jsonrepair(toolCall.function.arguments)),
               },
             })),
             role: 'model',
@@ -322,7 +323,7 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
                       functionCall: {
                         name: toolCall.name,
                         args: toolCall.arguments
-                          ? JSON.parse(toolCall.arguments)
+                          ? JSON.parse(jsonrepair(toolCall.arguments))
                           : {},
                       },
                     }),
