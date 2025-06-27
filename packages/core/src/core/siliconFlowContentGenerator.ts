@@ -105,7 +105,7 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
           functionResponse: {
             id: string;
             name: string;
-            response: { output: string };
+            response: { output?: string; error?: string };
           };
         } =>
           typeof part === 'object' &&
@@ -115,12 +115,17 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
           typeof part.functionResponse.id === 'string' &&
           typeof part.functionResponse.name === 'string' &&
           part.functionResponse.response !== undefined &&
-          typeof part.functionResponse.response.output === 'string',
+          (typeof part.functionResponse.response.output === 'string' ||
+            typeof part.functionResponse.response.error === 'string'),
       );
 
       if (functionResponseParts.length > 0) {
         const combinedText = functionResponseParts
-          .map((part) => part.functionResponse.response.output)
+          .map((part) =>
+            part.functionResponse.response.error
+              ? `Error: ${part.functionResponse.response.error}`
+              : part.functionResponse.response.output,
+          )
           .join('\n');
         const tool_call_id = functionResponseParts[0].functionResponse.id;
         messages.push({
