@@ -53,7 +53,7 @@
     "prepublishOnly": "node scripts/prepublish.js"
   },
   "bin": {
-    "gemini": "bundle/gemini.js"
+    "si": "bundle/gemini.js"
   },
   "files": [
     "bundle/",
