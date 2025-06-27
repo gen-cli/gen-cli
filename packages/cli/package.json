@@ -2,7 +2,7 @@
   "name": "@siliconflow/si-cli",
   "version": "0.1.5",
   "description": "SiliconFlow CLI",
-  "repository": "google-gemini/gemini-cli",
+  "repository": "siliconflow/si-cli",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
