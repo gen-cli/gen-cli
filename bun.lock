@@ -4,7 +4,7 @@
     "": {
       "name": "@google/gemini-cli",
       "dependencies": {
-        "@google/gemini-cli": "^0.1.1",
+        "@siliconflow/si-cli-core": "^0.1.1",
         "jsonrepair": "^3.12.0",
         "openai": "^5.7.0",
       },
@@ -82,7 +82,7 @@
       },
     },
     "packages/core": {
-      "name": "@google/gemini-cli-core",
+      "name": "@siliconflow/si-cli-core",
       "version": "0.1.5",
       "dependencies": {
         "@google/genai": "^1.4.0",
@@ -221,7 +221,7 @@
 
     "@google/gemini-cli": ["@google/gemini-cli@workspace:packages/cli"],
 
-    "@google/gemini-cli-core": ["@google/gemini-cli-core@workspace:packages/core"],
+    "@google/gemini-cli-core": ["@google/gemini-cli-core@0.1.5", "", { "dependencies": { "@google/genai": "^1.4.0", "@modelcontextprotocol/sdk": "^1.11.0", "@opentelemetry/api": "^1.9.0", "@opentelemetry/exporter-logs-otlp-grpc": "^0.52.0", "@opentelemetry/exporter-metrics-otlp-grpc": "^0.52.0", "@opentelemetry/exporter-trace-otlp-grpc": "^0.52.0", "@opentelemetry/instrumentation-http": "^0.52.0", "@opentelemetry/sdk-node": "^0.52.0", "@types/glob": "^8.1.0", "@types/html-to-text": "^9.0.4", "diff": "^7.0.0", "dotenv": "^16.4.7", "glob": "^10.4.5", "google-auth-library": "^9.11.0", "html-to-text": "^9.0.5", "ignore": "^7.0.0", "micromatch": "^4.0.8", "open": "^10.1.2", "shell-quote": "^1.8.2", "simple-git": "^3.28.0", "strip-ansi": "^7.1.0", "undici": "^7.10.0", "ws": "^8.18.0" } }, "sha512-JHBhT36sWd7NHeqhrG30ex0sddZgi2Mw2PG80H5tRYKPP6xa4P1a2c0nLMt3nQ2snnsmemawiRB7YXDGEUhd8g=="],
 
     "@google/genai": ["@google/genai@1.4.0", "", { "dependencies": { "google-auth-library": "^9.14.2", "ws": "^8.18.0", "zod": "^3.22.4", "zod-to-json-schema": "^3.22.4" }, "peerDependencies": { "@modelcontextprotocol/sdk": "^1.11.0" } }, "sha512-u9LQZbWBhqaaLelCcYsxMNDTeW12jzNwGkI/eqUeMG/iB1gJBu56LCxrFJ/hkHeZQgPg+j1pckBLZS/dnOh+Bw=="],
 
@@ -392,6 +392,8 @@
     "@rtsao/scc": ["@rtsao/scc@1.1.0", "", {}, "sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g=="],
 
     "@selderee/plugin-htmlparser2": ["@selderee/plugin-htmlparser2@0.11.0", "", { "dependencies": { "domhandler": "^5.0.3", "selderee": "^0.11.0" } }, "sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ=="],
+
+    "@siliconflow/si-cli-core": ["@siliconflow/si-cli-core@workspace:packages/core"],
 
     "@testing-library/dom": ["@testing-library/dom@9.3.4", "", { "dependencies": { "@babel/code-frame": "^7.10.4", "@babel/runtime": "^7.12.5", "@types/aria-query": "^5.0.1", "aria-query": "5.1.3", "chalk": "^4.1.0", "dom-accessibility-api": "^0.5.9", "lz-string": "^1.5.0", "pretty-format": "^27.0.2" } }, "sha512-FlS4ZWlp97iiNWig0Muq8p+3rVDjRiYE+YKGbAqXOu9nwJFFOdL00kFpz42M+4huzYi86vAK1sOOfyOG45muIQ=="],
 

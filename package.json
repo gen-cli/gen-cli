@@ -85,7 +85,7 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@google/gemini-cli": "^0.1.1",
+    "@siliconflow/si-cli-core": "^0.1.1",
     "jsonrepair": "^3.12.0",
     "openai": "^5.7.0"
   }
