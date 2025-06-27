@@ -1,6 +1,6 @@
 {
   "name": "@siliconflow/si-cli-core",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "SiliconFlow CLI Server",
   "repository": "siliconflow/si-cli",
   "type": "module",
@@ -45,7 +45,9 @@
     "simple-git": "^3.28.0",
     "strip-ansi": "^7.1.0",
     "undici": "^7.10.0",
-    "ws": "^8.18.0"
+    "ws": "^8.18.0",
+    "jsonrepair": "^3.12.0",
+    "openai": "^5.7.0"
   },
   "devDependencies": {
     "@types/diff": "^7.0.2",
