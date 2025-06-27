@@ -1,8 +1,8 @@
 {
   "name": "@siliconflow/si-cli-core",
   "version": "0.1.5",
-  "description": "Gemini CLI Server",
-  "repository": "google-gemini/gemini-cli",
+  "description": "SiliconFlow CLI Server",
+  "repository": "siliconflow/si-cli",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
