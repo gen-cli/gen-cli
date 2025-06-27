@@ -1,6 +1,6 @@
 {
   "name": "@siliconflow/si-cli",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "SiliconFlow CLI",
   "repository": "siliconflow/si-cli",
   "type": "module",
@@ -27,10 +27,10 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "undefined/undefined:0.1.7"
+    "sandboxImageUri": "undefined/undefined:0.1.8"
   },
   "dependencies": {
-    "@siliconflow/si-cli-core": "0.1.7",
+    "@siliconflow/si-cli-core": "0.1.8",
     "@types/update-notifier": "^6.0.8",
     "command-exists": "^1.2.9",
     "diff": "^7.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@siliconflow/si-cli-core",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "SiliconFlow CLI Server",
   "repository": "siliconflow/si-cli",
   "type": "module",
