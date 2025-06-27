@@ -1,5 +1,7 @@
 set -ex
+npm run clean
+npm install
 npm run prepare:packages
 npm run prerelease:dev
-npm run bundle
+npm run build
 npm publish --workspaces --tag rc
