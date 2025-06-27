@@ -111,8 +111,13 @@ export async function createContentGenerator(
       'User-Agent': `GeminiCLI/${version} (${process.platform}; ${process.arch})`,
     },
   };
-  const apiKey = process.env.SILICONFLOW_API_KEY;
-  if (apiKey) {
+  if (config.authType === AuthType.USE_SILICONFLOW) {
+    const apiKey = process.env.SILICONFLOW_API_KEY;
+    if (!apiKey) {
+      throw new Error(
+        'SILICONFLOW_API_KEY environment variable is not set. Please set it to use SiliconFlow.',
+      );
+    }
     return new SiliconFlowContentGenerator(apiKey);
   }
   if (config.authType === AuthType.LOGIN_WITH_GOOGLE_PERSONAL) {
