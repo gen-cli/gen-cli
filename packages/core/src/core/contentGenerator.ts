@@ -16,6 +16,7 @@ import {
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
 import { getEffectiveModel } from './modelCheck.js';
+import { SiliconFlowContentGenerator } from './siliconFlowContentGenerator.js';
 
 /**
  * Interface abstracting the core functionalities for generating content and counting tokens.
@@ -37,6 +38,7 @@ export interface ContentGenerator {
 export enum AuthType {
   LOGIN_WITH_GOOGLE_PERSONAL = 'oauth-personal',
   USE_GEMINI = 'gemini-api-key',
+  USE_SILICONFLOW = 'siliconflow-api-key',
   USE_VERTEX_AI = 'vertex-ai',
 }
 
@@ -109,6 +111,10 @@ export async function createContentGenerator(
       'User-Agent': `GeminiCLI/${version} (${process.platform}; ${process.arch})`,
     },
   };
+  const apiKey = process.env.SILICONFLOW_API_KEY;
+  if (apiKey) {
+    return new SiliconFlowContentGenerator(apiKey);
+  }
   if (config.authType === AuthType.LOGIN_WITH_GOOGLE_PERSONAL) {
     return createCodeAssistContentGenerator(httpOptions, config.authType);
   }

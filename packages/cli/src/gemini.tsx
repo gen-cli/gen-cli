@@ -280,7 +280,7 @@ async function validateNonInterActiveAuth(
     process.exit(1);
   }
 
-  selectedAuthType = selectedAuthType || AuthType.USE_GEMINI;
+  selectedAuthType = selectedAuthType || AuthType.USE_SILICONFLOW;
   const err = validateAuthMethod(selectedAuthType);
   if (err != null) {
     console.error(err);

@@ -39,6 +39,7 @@ import {
 import { ProxyAgent, setGlobalDispatcher } from 'undici';
 import { DEFAULT_GEMINI_FLASH_MODEL } from '../config/models.js';
 import { AuthType } from './contentGenerator.js';
+import { jsonrepair } from 'jsonrepair';
 
 function isThinkingSupported(model: string) {
   if (model.startsWith('gemini-2.5')) return true;
@@ -296,7 +297,7 @@ export class GeminiClient {
         throw error;
       }
       try {
-        return JSON.parse(text);
+        return JSON.parse(jsonrepair(text));
       } catch (parseError) {
         await reportError(
           parseError,

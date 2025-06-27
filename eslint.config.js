@@ -141,18 +141,6 @@ export default tseslint.config(
     plugins: {
       'license-header': licenseHeader,
     },
-    rules: {
-      'license-header/header': [
-        'error',
-        [
-          '/**',
-          ' * @license',
-          ' * Copyright 2025 Google LLC',
-          ' * SPDX-License-Identifier: Apache-2.0',
-          ' */',
-        ],
-      ],
-    },
   },
   // extra settings for scripts that we run directly with node
   {

@@ -29,12 +29,7 @@ export function AuthDialog({
     initialErrorMessage || null,
   );
   const items = [
-    {
-      label: 'Login with Google',
-      value: AuthType.LOGIN_WITH_GOOGLE_PERSONAL,
-    },
-    { label: 'Gemini API Key', value: AuthType.USE_GEMINI },
-    { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
+    { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
 
   let initialAuthIndex = items.findIndex(
@@ -93,12 +88,19 @@ export function AuthDialog({
         <Text color={Colors.Gray}>(Use Enter to select)</Text>
       </Box>
       <Box marginTop={1}>
-        <Text>Terms of Services and Privacy Notice for Gemini CLI</Text>
+        <Text>Terms of Services and Privacy Notice</Text>
       </Box>
       <Box marginTop={1}>
         <Text color={Colors.AccentBlue}>
           {
-            'https://github.com/google-gemini/gemini-cli/blob/main/docs/tos-privacy.md'
+            'https://docs.siliconflow.cn/cn/legals/terms-of-service'
+          }
+        </Text>
+      </Box>
+      <Box marginTop={1}>
+        <Text color={Colors.AccentBlue}>
+          {
+            'https://docs.siliconflow.cn/cn/legals/privacy-policy'
           }
         </Text>
       </Box>
