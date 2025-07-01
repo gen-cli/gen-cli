@@ -1,7 +1,7 @@
 {
   "name": "@gen-cli/gen-cli",
   "version": "0.1.8",
-  "description": "SiliconFlow CLI",
+  "description": "Gen CLI",
   "repository": "gen-cli/gen-cli",
   "type": "module",
   "main": "dist/index.js",
