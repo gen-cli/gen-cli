@@ -20,7 +20,7 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
    ```bash
    npm install -g @gen-cli/gen-cli
-   si
+   gen
    ```
 
 ## Examples

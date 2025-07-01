@@ -1,6 +1,6 @@
 {
   "name": "@gen-cli/gen-cli",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -53,7 +53,7 @@
     "prepublishOnly": "node scripts/prepublish.js"
   },
   "bin": {
-    "si": "bundle/gemini.js"
+    "gen": "bundle/gemini.js"
   },
   "files": [
     "bundle/",

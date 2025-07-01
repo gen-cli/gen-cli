@@ -1,6 +1,6 @@
 {
   "name": "@gen-cli/gen-cli-core",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Gen CLI Server",
   "repository": "gen-cli/gen-cli",
   "type": "module",

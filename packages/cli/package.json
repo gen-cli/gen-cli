@@ -1,12 +1,12 @@
 {
   "name": "@gen-cli/gen-cli",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Gen CLI",
   "repository": "gen-cli/gen-cli",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "si": "dist/index.js"
+    "gen": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
@@ -27,10 +27,10 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "undefined/undefined:0.1.8"
+    "sandboxImageUri": "undefined/undefined:0.1.9"
   },
   "dependencies": {
-    "@gen-cli/gen-cli-core": "0.1.8",
+    "@gen-cli/gen-cli-core": "0.1.9",
     "@types/update-notifier": "^6.0.8",
     "command-exists": "^1.2.9",
     "diff": "^7.0.0",
