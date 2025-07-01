@@ -39,8 +39,8 @@ Or work with an existing project:
 
 ```sh
 git clone https://github.com/gen-cli/gen-cli
-cd si-cli
-si
+cd gen-cli
+gen
 > Give me a summary of all of the changes that went in yesterday
 ```
 
