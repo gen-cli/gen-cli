@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { Colors } from '../colors.js';
-import { type Config } from '@siliconflow/si-cli-core';
+import { type Config } from '@gen-cli/gen-command-core';
 
 interface TipsProps {
   config: Config;

@@ -24,7 +24,7 @@ import {
   ThoughtSummary,
   UnauthorizedError,
   UserPromptEvent,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import { type Part, type PartListUnion } from '@google/genai';
 import {
   StreamingState,

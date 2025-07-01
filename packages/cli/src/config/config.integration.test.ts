@@ -12,7 +12,7 @@ import {
   Config,
   ConfigParameters,
   ContentGeneratorConfig,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 
 const TEST_CONTENT_GENERATOR_CONFIG: ContentGeneratorConfig = {
   apiKey: 'test-key',
@@ -21,8 +21,8 @@ const TEST_CONTENT_GENERATOR_CONFIG: ContentGeneratorConfig = {
 };
 
 // Mock file discovery service and tool registry
-vi.mock('@siliconflow/si-cli-core', async () => {
-  const actual = await vi.importActual('@siliconflow/si-cli-core');
+vi.mock('@gen-cli/gen-command-core', async () => {
+  const actual = await vi.importActual('@gen-cli/gen-command-core');
   return {
     ...actual,
     FileDiscoveryService: vi.fn().mockImplementation(() => ({

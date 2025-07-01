@@ -24,7 +24,7 @@ import {
   ToolCall, // Import from core
   Status as ToolCallStatusType,
   ApprovalMode, // Import from core
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import {
   HistoryItemWithoutId,
   ToolCallStatus,
@@ -32,8 +32,8 @@ import {
 } from '../types.js';
 
 // Mocks
-vi.mock('@siliconflow/si-cli-core', async () => {
-  const actual = await vi.importActual('@siliconflow/si-cli-core');
+vi.mock('@gen-cli/gen-command-core', async () => {
+  const actual = await vi.importActual('@gen-cli/gen-command-core');
   return {
     ...actual,
     ToolRegistry: vi.fn(),

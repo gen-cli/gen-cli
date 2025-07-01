@@ -14,7 +14,7 @@ import {
   ToolExecuteConfirmationDetails,
   ToolMcpConfirmationDetails,
   Config,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import {
   RadioButtonSelect,
   RadioSelectItem,

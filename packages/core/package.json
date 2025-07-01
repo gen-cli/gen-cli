@@ -1,8 +1,8 @@
 {
-  "name": "@siliconflow/si-cli-core",
+  "name": "@gen-cli/gen-command-core",
   "version": "0.1.8",
   "description": "SiliconFlow CLI Server",
-  "repository": "siliconflow/si-cli",
+  "repository": "gen-cli/gen-command",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {

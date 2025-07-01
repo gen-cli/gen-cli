@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { Colors } from '../colors.js';
-import { ApprovalMode } from '@siliconflow/si-cli-core';
+import { ApprovalMode } from '@gen-cli/gen-command-core';
 
 interface AutoAcceptIndicatorProps {
   approvalMode: ApprovalMode;

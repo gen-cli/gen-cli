@@ -19,9 +19,9 @@ if (!fs.existsSync(packageJsonPath)) {
   errors.push(`Error: package.json not found in ${process.cwd()}`);
 } else {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-  if (packageJson.repository !== 'siliconflow/si-cli') {
+  if (packageJson.repository !== 'gen-cli/gen-command') {
     errors.push(
-      `Error: The "repository" field in ${packageJsonPath} must be "siliconflow/si-cli".`,
+      `Error: The "repository" field in ${packageJsonPath} must be "gen-cli/gen-command".`,
     );
   }
 }

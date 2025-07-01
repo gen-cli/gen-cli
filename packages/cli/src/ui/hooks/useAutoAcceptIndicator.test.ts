@@ -20,14 +20,14 @@ import {
   Config,
   Config as ActualConfigType,
   ApprovalMode,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import { useInput, type Key as InkKey } from 'ink';
 
 vi.mock('ink');
 
-vi.mock('@siliconflow/si-cli-core', async () => {
+vi.mock('@gen-cli/gen-command-core', async () => {
   const actualServerModule = (await vi.importActual(
-    '@siliconflow/si-cli-core',
+    '@gen-cli/gen-command-core',
   )) as Record<string, unknown>;
   return {
     ...actualServerModule,

@@ -15,7 +15,7 @@ import {
   SETTINGS_DIRECTORY_NAME,
 } from '../config/settings.js';
 import { promisify } from 'util';
-import { SandboxConfig } from '@siliconflow/si-cli-core';
+import { SandboxConfig } from '@gen-cli/gen-command-core';
 
 const execAsync = promisify(exec);
 

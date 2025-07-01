@@ -9,7 +9,7 @@ import { Box, Text, useInput } from 'ink';
 import { Colors } from '../colors.js';
 import { RadioButtonSelect } from './shared/RadioButtonSelect.js';
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
-import { AuthType } from '@siliconflow/si-cli-core';
+import { AuthType } from '@gen-cli/gen-command-core';
 import { validateAuthMethod } from '../../config/auth.js';
 
 interface AuthDialogProps {

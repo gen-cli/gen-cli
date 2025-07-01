@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react';
 import { useInput } from 'ink';
-import { ApprovalMode, type Config } from '@siliconflow/si-cli-core';
+import { ApprovalMode, type Config } from '@gen-cli/gen-command-core';
 
 export interface UseAutoAcceptIndicatorArgs {
   config: Config;

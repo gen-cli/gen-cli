@@ -5,7 +5,7 @@
  */
 
 import { Message, MessageType } from '../types.js';
-import { Config } from '@siliconflow/si-cli-core';
+import { Config } from '@gen-cli/gen-command-core';
 import { LoadedSettings } from '../../config/settings.js';
 
 export function createShowMemoryAction(

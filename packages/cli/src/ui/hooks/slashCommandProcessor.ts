@@ -18,7 +18,7 @@ import {
   MCPServerStatus,
   getMCPDiscoveryState,
   getMCPServerStatus,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import { useSessionStats } from '../contexts/SessionContext.js';
 import {
   Message,

@@ -18,7 +18,7 @@ import {
   DEFAULT_GEMINI_EMBEDDING_MODEL,
   FileDiscoveryService,
   TelemetryTarget,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import { Settings } from './settings.js';
 
 import { Extension } from './extension.js';

@@ -11,7 +11,7 @@ import {
   ToolRegistry,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import {
   Content,
   Part,

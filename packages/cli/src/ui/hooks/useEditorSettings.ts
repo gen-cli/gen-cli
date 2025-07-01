@@ -11,7 +11,7 @@ import {
   allowEditorTypeInSandbox,
   checkHasEditorType,
   EditorType,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 
 interface UseEditorSettingsReturn {
   isEditorDialogOpen: boolean;

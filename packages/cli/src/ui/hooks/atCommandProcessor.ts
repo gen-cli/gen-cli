@@ -12,7 +12,7 @@ import {
   getErrorMessage,
   isNodeError,
   unescapePath,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import {
   HistoryItem,
   IndividualToolCallDisplay,

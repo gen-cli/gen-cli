@@ -21,7 +21,7 @@ import {
   ToolCall,
   Status as CoreStatus,
   EditorType,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import { useCallback, useState, useMemo } from 'react';
 import {
   HistoryItemToolGroup,

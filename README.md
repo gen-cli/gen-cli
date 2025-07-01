@@ -1,4 +1,4 @@
-# SiliconFlow CLI
+# Gen CLI
 
 forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 
@@ -13,13 +13,13 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 3. **Run the CLI:** Execute the following command in your terminal:
 
    ```bash
-   npx https://github.com/siliconflow/si-cli
+   npx https://github.com/gen-cli/gen-command
    ```
 
    Or install it with:
 
    ```bash
-   npm install -g @siliconflow/si-cli
+   npm install -g @gen-cli/gen-command
    si
    ```
 
@@ -38,7 +38,7 @@ gemini
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/siliconflow/si-cli
+git clone https://github.com/gen-cli/gen-command
 cd si-cli
 si
 > Give me a summary of all of the changes that went in yesterday

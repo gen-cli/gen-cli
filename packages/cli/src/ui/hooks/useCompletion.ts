@@ -15,7 +15,7 @@ import {
   getErrorMessage,
   Config,
   FileDiscoveryService,
-} from '@siliconflow/si-cli-core';
+} from '@gen-cli/gen-command-core';
 import {
   MAX_SUGGESTIONS_TO_SHOW,
   Suggestion,
