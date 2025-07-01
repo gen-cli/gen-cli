@@ -5,7 +5,7 @@
  */
 
 import { Message, MessageType } from '../types.js';
-import { Config } from '@gen-cli/gen-command-core';
+import { Config } from '@gen-cli/gen-cli-core';
 import { LoadedSettings } from '../../config/settings.js';
 
 export function createShowMemoryAction(

@@ -7,10 +7,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { getStartupWarnings } from './startupWarnings.js';
 import * as fs from 'fs/promises';
-import { getErrorMessage } from '@gen-cli/gen-command-core';
+import { getErrorMessage } from '@gen-cli/gen-cli-core';
 
 vi.mock('fs/promises');
-vi.mock('@gen-cli/gen-command-core', async (importOriginal) => {
+vi.mock('@gen-cli/gen-cli-core', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,

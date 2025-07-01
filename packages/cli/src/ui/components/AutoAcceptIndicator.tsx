@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Text } from 'ink';
 import { Colors } from '../colors.js';
-import { ApprovalMode } from '@gen-cli/gen-command-core';
+import { ApprovalMode } from '@gen-cli/gen-cli-core';
 
 interface AutoAcceptIndicatorProps {
   approvalMode: ApprovalMode;

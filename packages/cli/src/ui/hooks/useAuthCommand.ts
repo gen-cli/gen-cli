@@ -11,7 +11,7 @@ import {
   Config,
   clearCachedCredentialFile,
   getErrorMessage,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 
 async function performAuthFlow(authMethod: AuthType, config: Config) {
   await config.refreshAuth(authMethod);

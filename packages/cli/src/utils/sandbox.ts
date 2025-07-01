@@ -15,7 +15,7 @@ import {
   SETTINGS_DIRECTORY_NAME,
 } from '../config/settings.js';
 import { promisify } from 'util';
-import { SandboxConfig } from '@gen-cli/gen-command-core';
+import { SandboxConfig } from '@gen-cli/gen-cli-core';
 
 const execAsync = promisify(exec);
 

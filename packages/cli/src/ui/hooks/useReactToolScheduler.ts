@@ -21,7 +21,7 @@ import {
   ToolCall,
   Status as CoreStatus,
   EditorType,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import { useCallback, useState, useMemo } from 'react';
 import {
   HistoryItemToolGroup,

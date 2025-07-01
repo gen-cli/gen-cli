@@ -33,7 +33,7 @@ import {
   sessionId,
   logUserPrompt,
   AuthType,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from './config/auth.js';
 import { setMaxSizedBoxDebugging } from './ui/components/shared/MaxSizedBox.js';
 

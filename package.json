@@ -1,5 +1,5 @@
 {
-  "name": "@gen-cli/gen-command",
+  "name": "@gen-cli/gen-cli",
   "version": "0.1.8",
   "engines": {
     "node": ">=18.0.0"
@@ -8,7 +8,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "repository": "gen-cli/gen-command",
+  "repository": "gen-cli/gen-cli",
   "config": {
     "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.4"
   },
@@ -85,6 +85,6 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@gen-cli/gen-command-core": "^0.1.1"
+    "@gen-cli/gen-cli-core": "^0.1.1"
   }
 }

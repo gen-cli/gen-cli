@@ -16,7 +16,7 @@ import {
   TrackedExecutingToolCall,
   TrackedCancelledToolCall,
 } from './useReactToolScheduler.js';
-import { Config, EditorType, AuthType } from '@gen-cli/gen-command-core';
+import { Config, EditorType, AuthType } from '@gen-cli/gen-cli-core';
 import { Part, PartListUnion } from '@google/genai';
 import { UseHistoryManagerReturn } from './useHistoryManager.js';
 import { HistoryItem, MessageType, StreamingState } from '../types.js';
@@ -42,7 +42,7 @@ const MockedUserPromptEvent = vi.hoisted(() =>
   vi.fn().mockImplementation(() => {}),
 );
 
-vi.mock('@gen-cli/gen-command-core', async (importOriginal) => {
+vi.mock('@gen-cli/gen-cli-core', async (importOriginal) => {
   const actualCoreModule = (await importOriginal()) as any;
   return {
     ...actualCoreModule,

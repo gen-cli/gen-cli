@@ -54,7 +54,7 @@ import {
   ApprovalMode,
   isEditorAvailable,
   EditorType,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from '../config/auth.js';
 import { useLogger } from './hooks/useLogger.js';
 import { StreamingContext } from './contexts/StreamingContext.js';

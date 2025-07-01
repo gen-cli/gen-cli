@@ -4,7 +4,7 @@
     "": {
       "name": "@google/gemini-cli",
       "dependencies": {
-        "@gen-cli/gen-command-core": "^0.1.1",
+        "@gen-cli/gen-cli-core": "^0.1.1",
         "jsonrepair": "^3.12.0",
         "openai": "^5.7.0",
       },
@@ -34,13 +34,13 @@
       },
     },
     "packages/cli": {
-      "name": "@gen-cli/gen-command",
+      "name": "@gen-cli/gen-cli",
       "version": "0.1.5",
       "bin": {
         "gemini": "dist/index.js",
       },
       "dependencies": {
-        "@gen-cli/gen-command-core": "*",
+        "@gen-cli/gen-cli-core": "*",
         "@types/update-notifier": "^6.0.8",
         "command-exists": "^1.2.9",
         "diff": "^7.0.0",
@@ -82,7 +82,7 @@
       },
     },
     "packages/core": {
-      "name": "@gen-cli/gen-command-core",
+      "name": "@gen-cli/gen-cli-core",
       "version": "0.1.5",
       "dependencies": {
         "@google/genai": "^1.4.0",
@@ -1492,11 +1492,11 @@
       },
       "sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ=="
     ],
-    "@gen-cli/gen-command": [
-      "@gen-cli/gen-command@workspace:packages/cli"
+    "@gen-cli/gen-cli": [
+      "@gen-cli/gen-cli@workspace:packages/cli"
     ],
-    "@gen-cli/gen-command-core": [
-      "@gen-cli/gen-command-core@workspace:packages/core"
+    "@gen-cli/gen-cli-core": [
+      "@gen-cli/gen-cli-core@workspace:packages/core"
     ],
     "@testing-library/dom": [
       "@testing-library/dom@9.3.4",

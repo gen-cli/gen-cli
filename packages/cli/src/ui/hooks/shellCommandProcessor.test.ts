@@ -7,7 +7,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useShellCommandProcessor } from './shellCommandProcessor';
-import { Config, GeminiClient } from '@gen-cli/gen-command-core';
+import { Config, GeminiClient } from '@gen-cli/gen-cli-core';
 import * as fs from 'fs';
 import EventEmitter from 'events';
 
@@ -22,7 +22,7 @@ vi.mock('os', () => ({
   platform: () => 'linux',
   tmpdir: () => '/tmp',
 }));
-vi.mock('@gen-cli/gen-command-core');
+vi.mock('@gen-cli/gen-cli-core');
 vi.mock('../utils/textUtils.js', () => ({
   isBinary: vi.fn(),
 }));

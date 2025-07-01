@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react';
 import { useInput } from 'ink';
-import { ApprovalMode, type Config } from '@gen-cli/gen-command-core';
+import { ApprovalMode, type Config } from '@gen-cli/gen-cli-core';
 
 export interface UseAutoAcceptIndicatorArgs {
   config: Config;

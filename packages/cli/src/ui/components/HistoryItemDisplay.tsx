@@ -18,7 +18,7 @@ import { Box } from 'ink';
 import { AboutBox } from './AboutBox.js';
 import { StatsDisplay } from './StatsDisplay.js';
 import { SessionSummaryDisplay } from './SessionSummaryDisplay.js';
-import { Config } from '@gen-cli/gen-command-core';
+import { Config } from '@gen-cli/gen-cli-core';
 
 interface HistoryItemDisplayProps {
   item: HistoryItem;

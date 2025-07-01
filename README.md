@@ -13,13 +13,13 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 3. **Run the CLI:** Execute the following command in your terminal:
 
    ```bash
-   npx https://github.com/gen-cli/gen-command
+   npx https://github.com/gen-cli/gen-cli
    ```
 
    Or install it with:
 
    ```bash
-   npm install -g @gen-cli/gen-command
+   npm install -g @gen-cli/gen-cli
    si
    ```
 
@@ -38,7 +38,7 @@ gemini
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/gen-cli/gen-command
+git clone https://github.com/gen-cli/gen-cli
 cd si-cli
 si
 > Give me a summary of all of the changes that went in yesterday

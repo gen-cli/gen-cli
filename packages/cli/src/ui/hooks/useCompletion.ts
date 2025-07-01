@@ -15,7 +15,7 @@ import {
   getErrorMessage,
   Config,
   FileDiscoveryService,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import {
   MAX_SUGGESTIONS_TO_SHOW,
   Suggestion,

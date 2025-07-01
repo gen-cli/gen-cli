@@ -14,7 +14,7 @@ import {
   ToolRegistry,
   AccessibilitySettings,
   SandboxConfig,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import { LoadedSettings, SettingsFile, Settings } from '../config/settings.js';
 import process from 'node:process';
 
@@ -69,9 +69,9 @@ interface MockServerConfig {
 }
 
 // Mock @google/gemini-cli-core and its Config class
-vi.mock('@gen-cli/gen-command-core', async (importOriginal) => {
+vi.mock('@gen-cli/gen-cli-core', async (importOriginal) => {
   const actualCore =
-    await importOriginal<typeof import('@gen-cli/gen-command-core')>();
+    await importOriginal<typeof import('@gen-cli/gen-cli-core')>();
   const ConfigClassMock = vi
     .fn()
     .mockImplementation((optionsPassedToConstructor) => {

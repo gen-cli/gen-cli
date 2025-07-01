@@ -22,10 +22,10 @@ import {
   type EditorType,
   checkHasEditorType,
   allowEditorTypeInSandbox,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 
-vi.mock('@gen-cli/gen-command-core', async () => {
-  const actual = await vi.importActual('@gen-cli/gen-command-core');
+vi.mock('@gen-cli/gen-cli-core', async () => {
+  const actual = await vi.importActual('@gen-cli/gen-cli-core');
   return {
     ...actual,
     checkHasEditorType: vi.fn(() => true),

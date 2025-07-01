@@ -11,7 +11,7 @@ import {
   ToolRegistry,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import {
   Content,
   Part,

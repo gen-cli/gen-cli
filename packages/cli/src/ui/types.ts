@@ -7,7 +7,7 @@
 import {
   ToolCallConfirmationDetails,
   ToolResultDisplay,
-} from '@gen-cli/gen-command-core';
+} from '@gen-cli/gen-cli-core';
 import { CumulativeStats } from './contexts/SessionContext.js';
 
 // Only defining the state enum needed by the UI

@@ -9,7 +9,7 @@ import { Box, Text, useInput } from 'ink';
 import { Colors } from '../colors.js';
 import { RadioButtonSelect } from './shared/RadioButtonSelect.js';
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
-import { AuthType } from '@gen-cli/gen-command-core';
+import { AuthType } from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from '../../config/auth.js';
 
 interface AuthDialogProps {

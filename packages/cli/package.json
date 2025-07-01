@@ -1,8 +1,8 @@
 {
-  "name": "@gen-cli/gen-command",
+  "name": "@gen-cli/gen-cli",
   "version": "0.1.8",
   "description": "SiliconFlow CLI",
-  "repository": "gen-cli/gen-command",
+  "repository": "gen-cli/gen-cli",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -30,7 +30,7 @@
     "sandboxImageUri": "undefined/undefined:0.1.8"
   },
   "dependencies": {
-    "@gen-cli/gen-command-core": "0.1.8",
+    "@gen-cli/gen-cli-core": "0.1.8",
     "@types/update-notifier": "^6.0.8",
     "command-exists": "^1.2.9",
     "diff": "^7.0.0",
