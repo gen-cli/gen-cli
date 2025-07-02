@@ -13,9 +13,7 @@ import {
 import OpenAI from 'openai';
 import { ContentGenerator } from './contentGenerator.js';
 import { jsonrepair } from 'jsonrepair';
-const DEFAULT_SILICONFLOW_MODEL = 'deepseek-ai/SiliconFlow-V3';
-
-const SILICONFLOW_BASE_URL = 'https://api.siliconflow.cn';
+const OPENAI_BASE_URL = 'https://api.siliconflow.cn';
 
 /**
  * Helper function to convert ContentListUnion to Content[]
@@ -55,14 +53,14 @@ function toContent(content: Content | PartUnion): Content {
 export class OpenAICompatibleContentGenerator implements ContentGenerator {
   private openai: OpenAI;
 
-  constructor(apiKey: string, baseUrl: string = SILICONFLOW_BASE_URL) {
+  constructor(apiKey: string, baseUrl: string = OPENAI_BASE_URL) {
     this.openai = new OpenAI({
       apiKey,
       baseURL: baseUrl,
     });
   }
 
-  private convertToSiliconFlowMessages(
+  private convertToOpenAIMessages(
     contents: Content[],
   ): OpenAI.Chat.Completions.ChatCompletionMessageParam[] {
     const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [];
@@ -219,7 +217,7 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
     request: GenerateContentParameters,
   ): Promise<AsyncGenerator<GenerateContentResponse>> {
     const contentsArray = toContents(request.contents);
-    const messages = this.convertToSiliconFlowMessages(contentsArray);
+    const messages = this.convertToOpenAIMessages(contentsArray);
     const tools: OpenAI.Chat.Completions.ChatCompletionTool[] | undefined =
       request.config?.tools?.flatMap((tool) => {
         if ('functionDeclarations' in tool) {
@@ -244,13 +242,13 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
       });
 
     const stream = await this.openai.chat.completions.create({
-      model: request.model ?? DEFAULT_SILICONFLOW_MODEL,
+      model: request.model,
       messages,
       stream: true,
       temperature: request.config?.temperature,
       max_tokens: request.config?.maxOutputTokens,
       top_p: request.config?.topP,
-      tools
+      tools,
     });
 
     const toolCallMap = new Map<
@@ -352,12 +350,12 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
     request: GenerateContentParameters,
   ): Promise<GenerateContentResponse> {
     const contentsArray = toContents(request.contents);
-    const messages = this.convertToSiliconFlowMessages(contentsArray);
+    const messages = this.convertToOpenAIMessages(contentsArray);
 
     const tools = undefined;
 
     const completion = await this.openai.chat.completions.create({
-      model: request.model || DEFAULT_SILICONFLOW_MODEL,
+      model: request.model,
       messages,
       stream: false,
       temperature: request.config?.temperature,
@@ -375,7 +373,7 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
     const contentsArray = toContents(request.contents);
 
     // We'll estimate based on the text length (rough approximation: 4 chars per token)
-    const messages = this.convertToSiliconFlowMessages(contentsArray);
+    const messages = this.convertToOpenAIMessages(contentsArray);
     const totalText = messages.map((m) => m.content).join(' ');
     const estimatedTokens = Math.ceil(totalText.length / 4);
 
