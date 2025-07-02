@@ -5,7 +5,7 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
 ## Quickstart
 
 1. **Prerequisites:** Ensure you have [Node.js version 18](https://nodejs.org/en/download) or higher installed.
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key.
+2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key (copy from [here](https://cloud.siliconflow.cn/account/ak)).
 
    ```bash
    export SILICONFLOW_API_KEY="YOUR_API_KEY"
