@@ -91,18 +91,10 @@ export function AuthDialog({
         <Text>Terms of Services and Privacy Notice</Text>
       </Box>
       <Box marginTop={1}>
-        <Text color={Colors.AccentBlue}>
-          {
-            'https://docs.siliconflow.cn/cn/legals/terms-of-service'
-          }
-        </Text>
+        <Text color={Colors.AccentBlue}>https://docs.siliconflow.cn/cn/legals/terms-of-service</Text>
       </Box>
       <Box marginTop={1}>
-        <Text color={Colors.AccentBlue}>
-          {
-            'https://docs.siliconflow.cn/cn/legals/privacy-policy'
-          }
-        </Text>
+        <Text color={Colors.AccentBlue}>https://docs.siliconflow.cn/cn/legals/privacy-policy</Text>
       </Box>
     </Box>
   );
