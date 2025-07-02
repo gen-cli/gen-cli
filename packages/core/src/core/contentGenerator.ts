@@ -16,7 +16,7 @@ import {
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
 import { getEffectiveModel } from './modelCheck.js';
-import { SiliconFlowContentGenerator } from './siliconFlowContentGenerator.js';
+import { OpenAICompatibleContentGenerator } from './openAICompatibleContentGenerator.js';
 
 /**
  * Interface abstracting the core functionalities for generating content and counting tokens.
@@ -118,7 +118,7 @@ export async function createContentGenerator(
         'SILICONFLOW_API_KEY environment variable is not set. Please set it to use SiliconFlow.',
       );
     }
-    return new SiliconFlowContentGenerator(apiKey);
+    return new OpenAICompatibleContentGenerator(apiKey);
   }
   if (config.authType === AuthType.LOGIN_WITH_GOOGLE_PERSONAL) {
     return createCodeAssistContentGenerator(httpOptions, config.authType);

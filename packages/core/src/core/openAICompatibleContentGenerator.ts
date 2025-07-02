@@ -17,18 +17,6 @@ const DEFAULT_SILICONFLOW_MODEL = 'deepseek-ai/SiliconFlow-V3';
 
 const SILICONFLOW_BASE_URL = 'https://api.siliconflow.cn';
 
-type SiliconFlowMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam;
-
-interface SiliconFlowRequest {
-  model: string;
-  messages: SiliconFlowMessage[];
-  stream?: boolean;
-  temperature?: number;
-  max_tokens?: number;
-  top_p?: number;
-  tools?: OpenAI.Chat.Completions.ChatCompletionTool[];
-}
-
 /**
  * Helper function to convert ContentListUnion to Content[]
  */
@@ -64,7 +52,7 @@ function toContent(content: Content | PartUnion): Content {
   };
 }
 
-export class SiliconFlowContentGenerator implements ContentGenerator {
+export class OpenAICompatibleContentGenerator implements ContentGenerator {
   private openai: OpenAI;
 
   constructor(apiKey: string, baseUrl: string = SILICONFLOW_BASE_URL) {
@@ -76,8 +64,8 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
 
   private convertToSiliconFlowMessages(
     contents: Content[],
-  ): SiliconFlowMessage[] {
-    const messages: SiliconFlowMessage[] = [];
+  ): OpenAI.Chat.Completions.ChatCompletionMessageParam[] {
+    const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [];
     for (const content of contents) {
       const role =
         content.role === 'model'
@@ -255,20 +243,16 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
         return [];
       });
 
-    const siliconFlowRequest: SiliconFlowRequest = {
+    const stream = await this.openai.chat.completions.create({
       model: request.model ?? DEFAULT_SILICONFLOW_MODEL,
       messages,
       stream: true,
       temperature: request.config?.temperature,
       max_tokens: request.config?.maxOutputTokens,
       top_p: request.config?.topP,
-      tools,
-    };
-
-    const stream = await this.openai.chat.completions.create({
-      ...siliconFlowRequest,
-      stream: true,
+      tools
     });
+
     const toolCallMap = new Map<
       number,
       {
@@ -372,22 +356,13 @@ export class SiliconFlowContentGenerator implements ContentGenerator {
 
     const tools = undefined;
 
-    const siliconFlowRequest: SiliconFlowRequest = {
+    const completion = await this.openai.chat.completions.create({
       model: request.model || DEFAULT_SILICONFLOW_MODEL,
       messages,
       stream: false,
       temperature: request.config?.temperature,
       max_tokens: request.config?.maxOutputTokens,
       top_p: request.config?.topP,
-      tools,
-    };
-
-    const completion = await this.openai.chat.completions.create({
-      model: siliconFlowRequest.model,
-      messages: siliconFlowRequest.messages,
-      temperature: siliconFlowRequest.temperature,
-      max_tokens: siliconFlowRequest.max_tokens,
-      top_p: siliconFlowRequest.top_p,
       tools,
     });
 
