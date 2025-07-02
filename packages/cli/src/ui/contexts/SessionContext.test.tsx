@@ -14,7 +14,7 @@ import {
   SessionMetrics,
 } from './SessionContext.js';
 import { describe, it, expect, vi } from 'vitest';
-import { uiTelemetryService } from '@google/gemini-cli-core';
+import { uiTelemetryService } from '@gen-cli/gen-cli-core';
 
 /**
  * A test harness component that uses the hook and exposes the context value
