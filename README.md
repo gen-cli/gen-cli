@@ -10,6 +10,7 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    ```bash
    export SILICONFLOW_API_KEY="YOUR_API_KEY"
    ```
+
 3. **Run the CLI:** Execute the following command in your terminal:
 
    ```bash
