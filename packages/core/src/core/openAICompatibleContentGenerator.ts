@@ -14,6 +14,7 @@ import OpenAI from 'openai';
 import { ContentGenerator } from './contentGenerator.js';
 import { jsonrepair } from 'jsonrepair';
 const OPENAI_BASE_URL = 'https://api.siliconflow.cn';
+import { reportError } from '../utils/errorReporting.js';
 
 /**
  * Helper function to convert ContentListUnion to Content[]
@@ -241,7 +242,7 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
         return [];
       });
 
-    const stream = await this.openai.chat.completions.create({
+    const params = {
       model: request.model,
       messages,
       stream: true,
@@ -249,6 +250,10 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
       max_tokens: request.config?.maxOutputTokens,
       top_p: request.config?.topP,
       tools,
+    };
+    const stream = await this.openai.chat.completions.create({
+      ...params,
+      stream: true,
     });
 
     const toolCallMap = new Map<
@@ -299,6 +304,19 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
             }
           }
 
+          const tryRepair = (str: string) => {
+            try {
+              return JSON.parse(jsonrepair(str));
+            } catch (error) {
+              reportError(
+                error,
+                'Error when talking to OpenAI-compatible API',
+                { params, str },
+                'OpenAICompatible.parseToolCallArguments',
+              );
+              throw error;
+            }
+          };
           // Flush completed tool calls on finish
           if (choice.finish_reason === 'tool_calls' && toolCallMap.size > 0) {
             const geminiResponse = new GenerateContentResponse();
@@ -310,7 +328,7 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
                       functionCall: {
                         name: toolCall.name,
                         args: toolCall.arguments
-                          ? JSON.parse(jsonrepair(toolCall.arguments))
+                          ? tryRepair(toolCall.arguments)
                           : {},
                       },
                     }),
