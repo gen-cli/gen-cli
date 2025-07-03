@@ -242,7 +242,7 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
         return [];
       });
 
-    const params = {
+    let params = {
       model: request.model,
       messages,
       stream: true,
@@ -250,6 +250,11 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
       max_tokens: request.config?.maxOutputTokens,
       top_p: request.config?.topP,
       tools,
+    };
+    params = {
+      ...params,
+      top_p: 0.95,
+      temperature: 0.6,
     };
     const stream = await this.openai.chat.completions.create({
       ...params,
