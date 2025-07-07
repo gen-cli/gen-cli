@@ -54,6 +54,7 @@ import {
   ApprovalMode,
   isEditorAvailable,
   EditorType,
+  baseURL
 } from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from '../config/auth.js';
 import { useLogger } from './hooks/useLogger.js';
@@ -72,6 +73,7 @@ import ansiEscapes from 'ansi-escapes';
 import { OverflowProvider } from './contexts/OverflowContext.js';
 import { ShowMoreLines } from './components/ShowMoreLines.js';
 import { PrivacyNotice } from './privacy/PrivacyNotice.js';
+import { EndpointDisplay } from './components/EndpointDisplay.js';
 
 const CTRL_EXIT_PROMPT_DURATION_MS = 1000;
 
@@ -738,6 +740,9 @@ const App = ({ config, settings, startupWarnings = [] }: AppProps) => {
                       showToolDescriptions={showToolDescriptions}
                     />
                   )}
+                </Box>
+                <Box>
+                  <EndpointDisplay baseURL={baseURL()}/>
                 </Box>
                 <Box>
                   {showAutoAcceptIndicator !== ApprovalMode.DEFAULT &&
