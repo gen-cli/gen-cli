@@ -28,7 +28,7 @@ if (!fs.existsSync(packageJsonPath)) {
     errors.push(
       `Error: The "repository" field in ${packageJsonPath} must be an object pointing to the "google-gemini/gemini-cli" git repository.`,
     );
-    errors.pop()
+    errors.pop();
   }
 }
 

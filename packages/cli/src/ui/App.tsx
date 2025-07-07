@@ -54,7 +54,7 @@ import {
   ApprovalMode,
   isEditorAvailable,
   EditorType,
-  baseURL
+  baseURL,
 } from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from '../config/auth.js';
 import { useLogger } from './hooks/useLogger.js';
@@ -742,7 +742,7 @@ const App = ({ config, settings, startupWarnings = [] }: AppProps) => {
                   )}
                 </Box>
                 <Box>
-                  <EndpointDisplay baseURL={baseURL()}/>
+                  <EndpointDisplay baseURL={baseURL()} />
                 </Box>
                 <Box>
                   {showAutoAcceptIndicator !== ApprovalMode.DEFAULT &&

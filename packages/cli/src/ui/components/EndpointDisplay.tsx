@@ -8,9 +8,7 @@ interface EndpointDisplayProps {
 export const EndpointDisplay: React.FC<EndpointDisplayProps> = ({
   baseURL,
 }) => (
-    <Box>
-      <Text>
-        {baseURL}
-      </Text>
-    </Box>
-  );
+  <Box>
+    <Text>{baseURL}</Text>
+  </Box>
+);
