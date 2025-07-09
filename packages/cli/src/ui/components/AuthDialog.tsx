@@ -49,7 +49,7 @@ export function AuthDialog({
     },
     { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
   ];
-  items = [ { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }]
+  items = [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
