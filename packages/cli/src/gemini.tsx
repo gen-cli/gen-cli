@@ -121,7 +121,11 @@ export async function main() {
       );
     }
   }
-
+  settings.setValue(
+    SettingScope.User,
+    'selectedAuthType',
+    AuthType.USE_SILICONFLOW,
+  );
   setMaxSizedBoxDebugging(config.getDebugMode());
 
   await config.initialize();
