@@ -56,6 +56,7 @@ function toContent(content: Content | PartUnion): Content {
 
 export class OpenAICompatibleContentGenerator implements ContentGenerator {
   private openai: OpenAI;
+  private toolCallIdMap = new Map<string, string>(); // gemini_id -> openai_id
 
   constructor(apiKey: string) {
     this.openai = new OpenAI({
@@ -110,19 +111,18 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
       );
 
       if (functionResponseParts.length > 0) {
-        const combinedText = functionResponseParts
-          .map((part) =>
-            part.functionResponse.response.error
-              ? `Error: ${part.functionResponse.response.error}`
-              : part.functionResponse.response.output,
-          )
-          .join('\n');
-        const tool_call_id = functionResponseParts[0].functionResponse.id;
-        messages.push({
-          tool_call_id,
-          role: 'tool',
-          content: combinedText,
-        });
+        for (const part of functionResponseParts) {
+          const content = part.functionResponse.response.error
+            ? `Error: ${part.functionResponse.response.error}`
+            : part.functionResponse.response.output || '';
+          // Try to get the tool_call_id by function name
+          const tool_call_id = this.toolCallIdMap.get(part.functionResponse.name) || part.functionResponse.id;
+          messages.push({
+            tool_call_id,
+            role: 'tool',
+            content,
+          });
+        }
       }
       const functionCallParts = parts.filter(
         (
@@ -145,14 +145,20 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
         messages.push({
           role: 'assistant', // Force assistant role for tool calls
           content: null,
-          tool_calls: functionCallParts.map((part) => ({
-            id: `call_${Math.random().toString(36).slice(2)}`,
-            type: 'function',
-            function: {
-              name: part.functionCall.name,
-              arguments: JSON.stringify(part.functionCall.args),
-            },
-          })),
+          tool_calls: functionCallParts.map((part) => {
+            // Use function name + timestamp as deterministic ID
+            const openaiId = `${part.functionCall.name}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+            // Store mapping for function name to this ID
+            this.toolCallIdMap.set(part.functionCall.name, openaiId);
+            return {
+              id: openaiId,
+              type: 'function',
+              function: {
+                name: part.functionCall.name,
+                arguments: JSON.stringify(part.functionCall.args),
+              },
+            };
+          }),
         });
       }
 
