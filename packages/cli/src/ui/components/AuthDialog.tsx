@@ -60,7 +60,9 @@ export function AuthDialog({
     }
     return null;
   });
-  const SiliconFlowItems = [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }];
+  const SiliconFlowItems = [
+    { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
+  ];
   const items = SiliconFlowItems || [
     {
       label: 'Login with Google',
