@@ -21,7 +21,9 @@ interface AuthDialogProps {
 function parseDefaultAuthType(
   defaultAuthType: string | undefined,
 ): AuthType | null {
-  return AuthType.USE_SILICONFLOW;
+  if (!process.env.CI) {
+    return AuthType.USE_SILICONFLOW;
+  }
   if (
     defaultAuthType &&
     Object.values(AuthType).includes(defaultAuthType as AuthType)
@@ -63,7 +65,7 @@ export function AuthDialog({
   const SiliconFlowItems = [
     { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
-  const items = SiliconFlowItems || [
+  const items = !process.env.CI ? SiliconFlowItems : [
     {
       label: 'Login with Google',
       value: AuthType.LOGIN_WITH_GOOGLE,
