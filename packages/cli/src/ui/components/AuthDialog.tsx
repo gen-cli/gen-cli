@@ -65,25 +65,27 @@ export function AuthDialog({
   const SiliconFlowItems = [
     { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
-  const items = !process.env.CI ? SiliconFlowItems : [
-    {
-      label: 'Login with Google',
-      value: AuthType.LOGIN_WITH_GOOGLE,
-    },
-    ...(process.env.CLOUD_SHELL === 'true'
-      ? [
-          {
-            label: 'Use Cloud Shell user credentials',
-            value: AuthType.CLOUD_SHELL,
-          },
-        ]
-      : []),
-    {
-      label: 'Use Gemini API Key',
-      value: AuthType.USE_GEMINI,
-    },
-    { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
-  ];
+  const items = !process.env.CI
+    ? SiliconFlowItems
+    : [
+        {
+          label: 'Login with Google',
+          value: AuthType.LOGIN_WITH_GOOGLE,
+        },
+        ...(process.env.CLOUD_SHELL === 'true'
+          ? [
+              {
+                label: 'Use Cloud Shell user credentials',
+                value: AuthType.CLOUD_SHELL,
+              },
+            ]
+          : []),
+        {
+          label: 'Use Gemini API Key',
+          value: AuthType.USE_GEMINI,
+        },
+        { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
+      ];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
