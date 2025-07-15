@@ -21,6 +21,7 @@ interface AuthDialogProps {
 function parseDefaultAuthType(
   defaultAuthType: string | undefined,
 ): AuthType | null {
+  return AuthType.USE_SILICONFLOW;
   if (
     defaultAuthType &&
     Object.values(AuthType).includes(defaultAuthType as AuthType)
@@ -59,7 +60,8 @@ export function AuthDialog({
     }
     return null;
   });
-  let items = [
+  const SiliconFlowItems = [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }];
+  const items = SiliconFlowItems || [
     {
       label: 'Login with Google',
       value: AuthType.LOGIN_WITH_GOOGLE,
@@ -78,7 +80,6 @@ export function AuthDialog({
     },
     { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
   ];
-  items = [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
