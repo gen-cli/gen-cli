@@ -18,42 +18,85 @@ interface AuthDialogProps {
   initialErrorMessage?: string | null;
 }
 
+function parseDefaultAuthType(
+  defaultAuthType: string | undefined,
+): AuthType | null {
+  if (!process.env.CI) {
+    return AuthType.USE_SILICONFLOW;
+  }
+  if (
+    defaultAuthType &&
+    Object.values(AuthType).includes(defaultAuthType as AuthType)
+  ) {
+    return defaultAuthType as AuthType;
+  }
+  return null;
+}
+
 export function AuthDialog({
   onSelect,
   settings,
   initialErrorMessage,
 }: AuthDialogProps): React.JSX.Element {
-  const [errorMessage, setErrorMessage] = useState<string | null>(
-    initialErrorMessage
-      ? initialErrorMessage
-      : process.env.GEMINI_API_KEY
-        ? 'Existing API key detected (GEMINI_API_KEY). Select "Gemini API Key" option to use it.'
-        : null,
-  );
-  let items = [
-    {
-      label: 'Login with Google',
-      value: AuthType.LOGIN_WITH_GOOGLE,
-    },
-    ...(process.env.CLOUD_SHELL === 'true'
-      ? [
-          {
-            label: 'Use Cloud Shell user credentials',
-            value: AuthType.CLOUD_SHELL,
-          },
-        ]
-      : []),
-    {
-      label: 'Use Gemini API Key',
-      value: AuthType.USE_GEMINI,
-    },
-    { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
+  const [errorMessage, setErrorMessage] = useState<string | null>(() => {
+    if (initialErrorMessage) {
+      return initialErrorMessage;
+    }
+
+    const defaultAuthType = parseDefaultAuthType(
+      process.env.GEMINI_DEFAULT_AUTH_TYPE,
+    );
+
+    if (process.env.GEMINI_DEFAULT_AUTH_TYPE && defaultAuthType === null) {
+      return (
+        `Invalid value for GEMINI_DEFAULT_AUTH_TYPE: "${process.env.GEMINI_DEFAULT_AUTH_TYPE}". ` +
+        `Valid values are: ${Object.values(AuthType).join(', ')}.`
+      );
+    }
+
+    if (
+      process.env.GEMINI_API_KEY &&
+      (!defaultAuthType || defaultAuthType === AuthType.USE_GEMINI)
+    ) {
+      return 'Existing API key detected (GEMINI_API_KEY). Select "Gemini API Key" option to use it.';
+    }
+    return null;
+  });
+  const SiliconFlowItems = [
+    { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
-  items = [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }];
+  const items = !process.env.CI
+    ? SiliconFlowItems
+    : [
+        {
+          label: 'Login with Google',
+          value: AuthType.LOGIN_WITH_GOOGLE,
+        },
+        ...(process.env.CLOUD_SHELL === 'true'
+          ? [
+              {
+                label: 'Use Cloud Shell user credentials',
+                value: AuthType.CLOUD_SHELL,
+              },
+            ]
+          : []),
+        {
+          label: 'Use Gemini API Key',
+          value: AuthType.USE_GEMINI,
+        },
+        { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
+      ];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
       return item.value === settings.merged.selectedAuthType;
+    }
+
+    const defaultAuthType = parseDefaultAuthType(
+      process.env.GEMINI_DEFAULT_AUTH_TYPE,
+    );
+    if (defaultAuthType) {
+      return item.value === defaultAuthType;
     }
 
     if (process.env.GEMINI_API_KEY) {

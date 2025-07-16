@@ -1,6 +1,6 @@
 {
   "name": "@gen-cli/gen-cli",
-  "version": "0.1.10",
+  "version": "0.1.12",
   "description": "Gen CLI",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.10"
+    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.12"
   },
   "dependencies": {
     "@gen-cli/gen-cli": "file:../core",

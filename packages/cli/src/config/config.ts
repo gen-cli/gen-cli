@@ -17,6 +17,8 @@ import {
   DEFAULT_GEMINI_EMBEDDING_MODEL,
   FileDiscoveryService,
   TelemetryTarget,
+  MCPServerConfig,
+  IDE_SERVER_NAME,
 } from '@gen-cli/gen-cli-core';
 import { Settings } from './settings.js';
 
@@ -34,12 +36,13 @@ const logger = {
   error: (...args: any[]) => console.error('[ERROR]', ...args),
 };
 
-interface CliArgs {
+export interface CliArgs {
   model: string | undefined;
   sandbox: boolean | string | undefined;
   sandboxImage: string | undefined;
   debug: boolean | undefined;
   prompt: string | undefined;
+  promptInteractive: string | undefined;
   allFiles: boolean | undefined;
   all_files: boolean | undefined;
   showMemoryUsage: boolean | undefined;
@@ -53,9 +56,10 @@ interface CliArgs {
   allowedMcpServerNames: string[] | undefined;
   extensions: string[] | undefined;
   listExtensions: boolean | undefined;
+  ideMode: boolean | undefined;
 }
 
-async function parseArguments(): Promise<CliArgs> {
+export async function parseArguments(): Promise<CliArgs> {
   const yargsInstance = yargs(hideBin(process.argv))
     .scriptName('gemini')
     .usage(
@@ -72,6 +76,12 @@ async function parseArguments(): Promise<CliArgs> {
       alias: 'p',
       type: 'string',
       description: 'Prompt. Appended to input on stdin (if any).',
+    })
+    .option('prompt-interactive', {
+      alias: 'i',
+      type: 'string',
+      description:
+        'Execute the provided prompt and continue in interactive mode',
     })
     .option('sandbox', {
       alias: 's',
@@ -168,15 +178,26 @@ async function parseArguments(): Promise<CliArgs> {
       type: 'boolean',
       description: 'List all available extensions and exit.',
     })
+    .option('ide-mode', {
+      type: 'boolean',
+      description: 'Run in IDE mode?',
+    })
 
     .version(await getCliVersion()) // This will enable the --version flag based on package.json
     .alias('v', 'version')
     .help()
     .alias('h', 'help')
-    .strict();
+    .strict()
+    .check((argv) => {
+      if (argv.prompt && argv.promptInteractive) {
+        throw new Error(
+          'Cannot use both --prompt (-p) and --prompt-interactive (-i) together',
+        );
+      }
+      return true;
+    });
 
   yargsInstance.wrap(yargsInstance.terminalWidth());
-
   return yargsInstance.argv;
 }
 
@@ -208,13 +229,18 @@ export async function loadCliConfig(
   settings: Settings,
   extensions: Extension[],
   sessionId: string,
+  argv: CliArgs,
 ): Promise<Config> {
-  const argv = await parseArguments();
   const debugMode =
     argv.debug ||
     [process.env.DEBUG, process.env.DEBUG_MODE].some(
       (v) => v === 'true' || v === '1',
     );
+
+  const ideMode =
+    (argv.ideMode ?? settings.ideMode ?? false) &&
+    process.env.TERM_PROGRAM === 'vscode' &&
+    !process.env.SANDBOX;
 
   const activeExtensions = filterActiveExtensions(
     extensions,
@@ -248,6 +274,26 @@ export async function loadCliConfig(
   let mcpServers = mergeMcpServers(settings, activeExtensions);
   const excludeTools = mergeExcludeTools(settings, activeExtensions);
 
+  if (!argv.allowedMcpServerNames) {
+    if (settings.allowMCPServers) {
+      const allowedNames = new Set(settings.allowMCPServers.filter(Boolean));
+      if (allowedNames.size > 0) {
+        mcpServers = Object.fromEntries(
+          Object.entries(mcpServers).filter(([key]) => allowedNames.has(key)),
+        );
+      }
+    }
+
+    if (settings.excludeMCPServers) {
+      const excludedNames = new Set(settings.excludeMCPServers.filter(Boolean));
+      if (excludedNames.size > 0) {
+        mcpServers = Object.fromEntries(
+          Object.entries(mcpServers).filter(([key]) => !excludedNames.has(key)),
+        );
+      }
+    }
+  }
+
   if (argv.allowedMcpServerNames) {
     const allowedNames = new Set(argv.allowedMcpServerNames.filter(Boolean));
     if (allowedNames.size > 0) {
@@ -259,6 +305,31 @@ export async function loadCliConfig(
     }
   }
 
+  if (ideMode) {
+    const companionPort = process.env.GEMINI_CLI_IDE_SERVER_PORT;
+    if (!companionPort) {
+      throw new Error(
+        "Could not run in ide mode, make sure you're running in vs code integrated terminal. Try running in a fresh terminal.",
+      );
+    }
+    const httpUrl = `http://localhost:${companionPort}/mcp`;
+    mcpServers[IDE_SERVER_NAME] = new MCPServerConfig(
+      undefined, // command
+      undefined, // args
+      undefined, // env
+      undefined, // cwd
+      undefined, // url
+      httpUrl, // httpUrl
+      undefined, // headers
+      undefined, // tcp
+      undefined, // timeout
+      false, // trust
+      'IDE connection', // description
+      undefined, // includeTools
+      undefined, // excludeTools
+    );
+  }
+
   const sandboxConfig = await loadSandboxConfig(settings, argv);
 
   return new Config({
@@ -267,7 +338,7 @@ export async function loadCliConfig(
     sandbox: sandboxConfig,
     targetDir: process.cwd(),
     debugMode,
-    question: argv.prompt || '',
+    question: argv.promptInteractive || argv.prompt || '',
     fullContext: argv.allFiles || argv.all_files || false,
     coreTools: settings.coreTools || undefined,
     excludeTools,
@@ -312,12 +383,15 @@ export async function loadCliConfig(
     bugCommand: settings.bugCommand,
     model: argv.model!,
     extensionContextFilePaths,
+    maxSessionTurns: settings.maxSessionTurns ?? -1,
     listExtensions: argv.listExtensions || false,
     activeExtensions: activeExtensions.map((e) => ({
       name: e.config.name,
       version: e.config.version,
     })),
     noBrowser: !!process.env.NO_BROWSER,
+    summarizeToolOutput: settings.summarizeToolOutput,
+    ideMode,
   });
 }
 
