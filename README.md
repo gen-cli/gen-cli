@@ -20,11 +20,16 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    Or install it with:
 
    ```bash
-   npm install -g @gen-cli/gen-cli@nightly
+   npm install -g @gen-cli/gen-cli
    gen
    ```
 
-   **Note**: We use nightly tag to sync the version number with Gemini upstream and also include latest patches.
+   Add nightly tag to include latest patches.
+
+   ```bash
+   npm install -g @gen-cli/gen-cli
+   gen
+   ```
 
 ## Examples
 
