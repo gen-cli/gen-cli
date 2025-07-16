@@ -24,6 +24,13 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    gen
    ```
 
+   Add nightly tag to include latest patches.
+
+   ```bash
+   npm install -g @gen-cli/gen-cli@nightly
+   gen
+   ```
+
 ## Examples
 
 Once the CLI is running, you can start interacting with Gemini from your shell.
