@@ -27,7 +27,7 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    Add nightly tag to include latest patches.
 
    ```bash
-   npm install -g @gen-cli/gen-cli
+   npm install -g @gen-cli/gen-cli@nightly
    gen
    ```
 
