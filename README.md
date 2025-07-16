@@ -24,7 +24,7 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    gen
    ```
 
-   **Note**: We use nightly tag to sync the version number with Gemini upstream but also include latest patches.
+   **Note**: We use nightly tag to sync the version number with Gemini upstream and also include latest patches.
 
 ## Examples
 
