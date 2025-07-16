@@ -24,6 +24,8 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    gen
    ```
 
+   **Note**: We use nightly tag to sync the version number with Gemini upstream but also include latest patches.
+
 ## Examples
 
 Once the CLI is running, you can start interacting with Gemini from your shell.
