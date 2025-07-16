@@ -24,6 +24,14 @@ forked from [Google Gemini CLI](https://github.com/google-gemini/gemini-cli)
    gen
    ```
 
+### How to Use the Nightly Build
+
+To install the latest nightly build, use the `@nightly` tag:
+
+```bash
+npm install -g @gen-cli/gen-cli@nightly
+```
+
 ## Examples
 
 Once the CLI is running, you can start interacting with Gemini from your shell.
