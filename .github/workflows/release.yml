@@ -10,6 +10,7 @@ on:
         description: 'The version to release (e.g., v0.1.11). Required for manual patch releases.'
         required: false # Not required for scheduled runs
         type: string
+        default: v0.1.12
       ref:
         description: 'The branch or ref (full git sha) to release from.'
         required: true
