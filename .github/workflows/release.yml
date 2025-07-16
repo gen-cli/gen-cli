@@ -90,11 +90,11 @@ jobs:
           MANUAL_VERSION: ${{ inputs.version }}
 
       - name: Run Tests
-        if: github.event.inputs.force_skip_tests != 'true' && false
+        if: github.event.inputs.force_skip_tests != 'true'
         run: |
           npm run preflight
-          npm run test:integration:sandbox:none
-          npm run test:integration:sandbox:docker
+          # npm run test:integration:sandbox:none
+          # npm run test:integration:sandbox:docker
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
