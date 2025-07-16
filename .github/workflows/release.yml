@@ -23,12 +23,12 @@ on:
         default: true
       create_nightly_release:
         description: 'Auto apply the nightly release tag, input version is ignored.'
-        required: true
+        required: false
         type: boolean
         default: false
       force_skip_tests:
         description: 'Select to skip the "Run Tests" step in testing. Prod releases should run tests'
-        required: true
+        required: false
         type: boolean
         default: false
 
