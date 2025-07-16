@@ -10,7 +10,7 @@ on:
   merge_group:
 
 concurrency:
-  group: ${{ github.repository }}-${{ github.ref }}
+  group: ${{ github.repository }}-${{ github.ref }}-gen-cli-ci
   cancel-in-progress: true
 
 jobs:
