@@ -9,6 +9,10 @@ on:
     branches: [main, release]
   merge_group:
 
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build and Lint
