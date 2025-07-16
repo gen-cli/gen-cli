@@ -134,7 +134,7 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://wombat-dressing-room.appspot.com'
-          scope: '@google'
+          scope: '@gen-cli'
 
       - name: Publish @gen-cli/gen-cli-core
         run: npm publish --workspace=@gen-cli/gen-cli-core --tag=${{ steps.version.outputs.NPM_TAG }} ${{ steps.vars.outputs.is_dry_run == 'true' && '--dry-run' || '' }}
