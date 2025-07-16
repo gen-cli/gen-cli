@@ -2,7 +2,7 @@
   "name": "gemini-cli-vscode-ide-companion",
   "displayName": "Gemini CLI VSCode IDE Companion",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.1.12-nightly.250716.e2c718dc",
   "publisher": "google",
   "icon": "assets/icon.png",
   "repository": {
