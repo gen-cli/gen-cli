@@ -4,7 +4,7 @@ name: E2E Tests
 
 on:
   push:
-    branches: [main, "e2e/*"]
+    branches: [main, 'e2e/*']
   merge_group:
 
 jobs:
