@@ -1,6 +1,6 @@
 {
   "name": "@gen-cli/gen-cli-core",
-  "version": "0.1.12",
+  "version": "0.1.12-nightly.250717.12b64286",
   "description": "Gen CLI Core",
   "repository": {
     "type": "git",
