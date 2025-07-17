@@ -7,7 +7,7 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ideCommand } from './ideCommand.js';
 import { type CommandContext } from './types.js';
-import { type Config } from '@google/gemini-cli-core';
+import { type Config } from '@gen-cli/gen-cli-core';
 import * as child_process from 'child_process';
 import { glob } from 'glob';
 
@@ -17,7 +17,7 @@ import {
   IDE_SERVER_NAME,
   MCPDiscoveryState,
   MCPServerStatus,
-} from '@google/gemini-cli-core';
+} from '@gen-cli/gen-cli-core';
 
 vi.mock('child_process');
 vi.mock('glob');
