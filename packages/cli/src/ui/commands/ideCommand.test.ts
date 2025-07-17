@@ -21,9 +21,9 @@ import {
 
 vi.mock('child_process');
 vi.mock('glob');
-vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+vi.mock('@gen-cli/gen-cli-core', async (importOriginal) => {
   const original =
-    await importOriginal<typeof import('@google/gemini-cli-core')>();
+    await importOriginal<typeof import('@gen-cli/gen-cli-core')>();
   return {
     ...original,
     getMCPServerStatus: vi.fn(),
