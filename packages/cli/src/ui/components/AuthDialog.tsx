@@ -9,7 +9,7 @@ import { Box, Text, useInput } from 'ink';
 import { Colors } from '../colors.js';
 import { RadioButtonSelect } from './shared/RadioButtonSelect.js';
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
-import { AuthType } from '@gen-cli/gen-cli-core';
+import { AuthType, isSiliconFlow } from '@gen-cli/gen-cli-core';
 import { validateAuthMethod } from '../../config/auth.js';
 
 interface AuthDialogProps {
@@ -21,7 +21,7 @@ interface AuthDialogProps {
 function parseDefaultAuthType(
   defaultAuthType: string | undefined,
 ): AuthType | null {
-  if (!process.env.CI) {
+  if (isSiliconFlow()) {
     return AuthType.USE_SILICONFLOW;
   }
   if (
@@ -65,7 +65,7 @@ export function AuthDialog({
   const SiliconFlowItems = [
     { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
-  const items = !process.env.CI
+  const items = isSiliconFlow()
     ? SiliconFlowItems
     : [
         {

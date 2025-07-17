@@ -48,7 +48,7 @@ export class TestRig {
   }
 
   run(promptOrOptions, ...args) {
-    let command = `node ${this.bundlePath} --yolo`;
+    let command = `node ${this.bundlePath} --yolo --m Pro/deepseek-ai/DeepSeek-V3`;
     const execOptions = {
       cwd: this.testDir,
       encoding: 'utf-8',
