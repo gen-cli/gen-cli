@@ -9,14 +9,14 @@ export function isSiliconFlow(): boolean {
 }
 
 export const DEFAULT_MODEL = isSiliconFlow()
-  ? 'gemini-2.5-pro'
-  : 'deepseek-ai/DeepSeek-V3';
+  ? 'deepseek-ai/DeepSeek-V3'
+  : 'gemini-2.5-pro';
 export const DEFAULT_FLASH_MODEL = isSiliconFlow()
-  ? 'gemini-2.5-flash'
-  : 'deepseek-ai/DeepSeek-V3';
+  ? 'deepseek-ai/DeepSeek-V3'
+  : 'gemini-2.5-flash';
 export const DEFAULT_EMBEDDING_MODEL = isSiliconFlow()
-  ? 'gemini-embedding-001'
-  : 'Qwen/Qwen3-Embedding-8B';
+  ? 'Qwen/Qwen3-Embedding-8B'
+  : 'gemini-embedding-001';
 
 export const DEFAULT_GEMINI_MODEL = DEFAULT_MODEL;
 export const DEFAULT_GEMINI_FLASH_MODEL = DEFAULT_FLASH_MODEL;
