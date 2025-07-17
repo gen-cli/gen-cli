@@ -6,7 +6,7 @@
 
 import { vi, describe, it, expect, beforeEach, type Mocked } from 'vitest';
 import { CommandService } from './CommandService.js';
-import { type Config } from '@google/gemini-cli-core';
+import { type Config } from '@gen-cli/gen-cli';
 import { type SlashCommand } from '../ui/commands/types.js';
 import { memoryCommand } from '../ui/commands/memoryCommand.js';
 import { helpCommand } from '../ui/commands/helpCommand.js';
