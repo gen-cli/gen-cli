@@ -9,7 +9,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "gen": "dist/index.js"
+    "gemini": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
