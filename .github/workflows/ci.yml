@@ -49,7 +49,7 @@ jobs:
 
       - name: Rename modules to gen-cli
         run: |
-          bun run scripts/rename_gen_cli.ts
+          npm run gen-cli:rename
           npm run format
 
       - name: Build project

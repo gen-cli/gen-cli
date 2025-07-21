@@ -93,11 +93,6 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Rename modules to gen-cli
-        run: |
-          bun run scripts/rename_gen_cli.ts
-          npm run format
-
       - name: Run Tests
         if: github.event.inputs.force_skip_tests != 'true'
         run: |
