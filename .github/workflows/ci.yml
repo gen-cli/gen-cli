@@ -100,6 +100,15 @@ jobs:
       - name: Install dependencies for testing
         run: npm ci # Install fresh dependencies using the downloaded package-lock.json
 
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Rename modules to gen-cli
+        run: |
+          bun run scripts/rename_gen_cli.ts
+          npm run format
+
       - name: Run tests and generate reports
         run: NO_COLOR=true npm run test:ci
 
