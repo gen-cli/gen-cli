@@ -27,6 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Rename modules to gen-cli
+        run: |
+          npm run gen-cli:rename
+
       - name: Build project
         run: npm run build
 
