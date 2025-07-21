@@ -47,7 +47,7 @@
     "release:version": "node scripts/version.js",
     "telemetry": "node scripts/telemetry.js",
     "clean": "node scripts/clean.js",
-    "gen-cli:rename": "bun run scripts/rename_gen_cli.ts"
+    "gen-cli:rename": "bun run scripts/rename_gen_cli.ts && npm ci"
   },
   "bin": {
     "gen": "bundle/gemini.js"
