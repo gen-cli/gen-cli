@@ -68,8 +68,11 @@ async function renamePackageReferences() {
         pkg.name = '@gen-cli/gen-cli-core';
       } else if ((pkg.name as string).endsWith('cli')) {
         pkg.name = '@gen-cli/gen-cli';
+        if (!pkg.main || pkg.main != pkg.bin.gemini) {
+          throw 'require main to be set as bin';
+        }
         pkg.bin = {
-          gen: pkg.main || 'dist/index.js',
+          gen: pkg.main,
         };
       } else {
         throw `unknown pkg name in ${file}`;
