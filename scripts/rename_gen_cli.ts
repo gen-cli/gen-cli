@@ -53,6 +53,40 @@ async function getFileSystem(): Promise<FileSystem> {
 async function renamePackageReferences() {
   const fs = await getFileSystem();
 
+  // Update package.json files
+  const packageFiles = [
+    'packages/core/package.json',
+    'packages/cli/package.json',
+    'package.json',
+  ];
+
+  for (const file of packageFiles) {
+    try {
+      const content = await fs.readFile(file);
+      const pkg = JSON.parse(content);
+
+      if (file.includes('core')) {
+        pkg.name = '@gen-cli/gen-cli-core';
+      } else if (file.includes('cli')) {
+        pkg.name = '@gen-cli/gen-cli';
+      } else {
+        throw 'unknown pkg name';
+      }
+
+      pkg.description = pkg.description?.replace(/gemini/gi, 'gen');
+      if (pkg.repository) {
+        pkg.repository = {
+          type: 'git',
+          url: 'git+https://github.com/gen-cli/gen-cli.git',
+        };
+      }
+
+      await fs.writeFile(file, JSON.stringify(pkg, null, 2) + '\n');
+      console.log(`Updated package fields in ${file}`);
+    } catch (error) {
+      console.error(`Error updating ${file}:`, error);
+    }
+  }
   try {
     const files = await fs.glob('packages/**/*.{ts,tsx,js,jsx,json,md}');
     let changesMade = 0;
