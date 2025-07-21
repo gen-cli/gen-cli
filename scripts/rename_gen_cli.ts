@@ -44,7 +44,7 @@ async function getFileSystem(): Promise<FileSystem> {
   try {
     return await createBunFileSystem();
   } catch (e) {
-    console.log('Falling back to Node.js file system');
+    console.log('Falling back to Node.js file system', e);
     return await createNodeFileSystem();
   }
 }
