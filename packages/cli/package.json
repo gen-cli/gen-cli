@@ -1,7 +1,7 @@
 {
-  "name": "@gen-cli/gen-cli",
+  "name": "@google/gemini-cli",
   "version": "0.1.12",
-  "description": "Gen CLI",
+  "description": "Gemini CLI",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gen-cli/gen-cli.git"

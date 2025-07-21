@@ -1,5 +1,5 @@
 {
-  "name": "@gen-cli/gen-cli",
+  "name": "@google/gemini-cli",
   "version": "0.1.12",
   "engines": {
     "node": ">=20.0.0"
