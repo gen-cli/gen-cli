@@ -91,7 +91,7 @@ async function renamePackageReferences() {
     const files = await fs.glob('packages/**/*.{ts,tsx,js,jsx,json,md}');
     let changesMade = 0;
 
-    for (const file of files) {
+    for (const file of files.concat('package-lock.json')) {
       const content = await fs.readFile(file);
       if (content.includes('@google/gemini-cli')) {
         const newContent = content
