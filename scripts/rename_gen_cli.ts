@@ -64,12 +64,12 @@ async function renamePackageReferences() {
       const content = await fs.readFile(file);
       const pkg = JSON.parse(content);
 
-      if (file.includes('core')) {
+      if ((pkg.name as string).endsWith('core')) {
         pkg.name = '@gen-cli/gen-cli-core';
-      } else if (file.includes('cli')) {
+      } else if ((pkg.name as string).endsWith('cli')) {
         pkg.name = '@gen-cli/gen-cli';
       } else {
-        throw 'unknown pkg name';
+        throw `unknown pkg name in ${file}`;
       }
 
       pkg.description = pkg.description?.replace(/gemini/gi, 'gen');
