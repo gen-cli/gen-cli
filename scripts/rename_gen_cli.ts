@@ -84,6 +84,7 @@ async function renamePackageReferences() {
       console.log(`Updated package fields in ${file}`);
     } catch (error) {
       console.error(`Error updating ${file}:`, error);
+      process.exit(1);
     }
   }
   try {
