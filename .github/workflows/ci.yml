@@ -106,8 +106,7 @@ jobs:
 
       - name: Rename modules to gen-cli
         run: |
-          bun run scripts/rename_gen_cli.ts
-          npm run format
+          npm run gen-cli:rename
 
       - name: Run tests and generate reports
         run: NO_COLOR=true npm run test:ci
