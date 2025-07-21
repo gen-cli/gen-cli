@@ -43,6 +43,15 @@ jobs:
       - name: Run linter
         run: npm run lint:ci
 
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Rename modules to gen-cli
+        run: |
+          bun run scripts/rename_gen_cli.ts
+          git format
+
       - name: Build project
         run: npm run build
 

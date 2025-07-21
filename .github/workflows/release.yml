@@ -97,6 +97,7 @@ jobs:
         run: |
           bun run scripts/rename_gen_cli.ts
           git format
+
       - name: Run Tests
         if: github.event.inputs.force_skip_tests != 'true'
         run: |
