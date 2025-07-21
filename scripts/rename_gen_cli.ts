@@ -8,7 +8,6 @@ interface FileSystem {
 }
 
 async function createBunFileSystem(): Promise<FileSystem> {
-  const { $ } = await import('bun');
   const { glob } = await import('glob');
 
   return {
