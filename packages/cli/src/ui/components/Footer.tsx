@@ -13,7 +13,7 @@ import {
   tokenLimit,
   ideContext,
   ActiveFile,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 import { ConsoleSummaryDisplay } from './ConsoleSummaryDisplay.js';
 import process from 'node:process';
 import Gradient from 'ink-gradient';

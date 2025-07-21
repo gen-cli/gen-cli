@@ -15,7 +15,7 @@ import {
   getMCPServerStatus,
   MCPDiscoveryState,
   MCPServerStatus,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 import open from 'open';
 
 const COLOR_GREEN = '\u001b[32m';

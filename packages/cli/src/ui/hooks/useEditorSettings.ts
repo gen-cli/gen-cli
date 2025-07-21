@@ -11,7 +11,7 @@ import {
   allowEditorTypeInSandbox,
   checkHasEditorType,
   EditorType,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 
 interface UseEditorSettingsReturn {
   isEditorDialogOpen: boolean;

@@ -7,7 +7,7 @@
 import {
   ToolCallConfirmationDetails,
   ToolResultDisplay,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 
 // Only defining the state enum needed by the UI
 export enum StreamingState {

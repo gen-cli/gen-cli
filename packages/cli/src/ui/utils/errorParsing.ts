@@ -13,7 +13,7 @@ import {
   isGenericQuotaExceededError,
   isApiError,
   isStructuredError,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 
 // Free Tier message functions
 const getRateLimitErrorMessageGoogleFree = (

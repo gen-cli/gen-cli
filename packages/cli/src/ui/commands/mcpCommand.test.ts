@@ -13,7 +13,7 @@ import {
   getMCPServerStatus,
   getMCPDiscoveryState,
   DiscoveredMCPTool,
-} from '@gen-cli/gen-cli-core';
+} from '@google/gemini-cli-core';
 import open from 'open';
 import { MessageActionReturn } from './types.js';
 import { Type, CallableTool } from '@google/genai';
@@ -23,8 +23,9 @@ vi.mock('open', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('@gen-cli/gen-cli-core', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@gen-cli/gen-cli-core')>();
+vi.mock('@google/gemini-cli-core', async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import('@google/gemini-cli-core')>();
   return {
     ...actual,
     getMCPServerStatus: vi.fn(),
