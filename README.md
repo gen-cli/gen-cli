@@ -47,6 +47,7 @@ gen -y
 ## Development
 
 To build and run from source:
+
 ```
 npm run build && npm run start -- --yolo --debug
 ```
