@@ -38,8 +38,9 @@ Once the CLI is running, you can start interacting with Gemini from your shell.
 You can start a project from a new directory:
 
 ```sh
+mkdir new-project/
 cd new-project/
-gen
+gen -y
 > Write me a TODO app in tailwindcss and react that can be used to track my daily tasks
 ```
 
