@@ -37,7 +37,7 @@ Once the CLI is running, you can start interacting with Gemini from your shell.
 
 You can start a project from a new directory:
 
-```sh
+```bash
 mkdir new-project/
 cd new-project/
 gen -y
@@ -48,7 +48,7 @@ gen -y
 
 To build and run from source:
 
-```
+```bash
 npm run build && npm run start -- --yolo --debug
 ```
 
