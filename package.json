@@ -1,6 +1,6 @@
 {
-  "name": "@google/gemini-cli",
-  "version": "0.1.13",
+  "name": "@gen-cli/gen-cli",
+  "version": "0.1.13-nightly.250722.4360d454",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/gen-cli/gen-cli.git"
   },
   "config": {
-    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.13"
+    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.13-nightly.250722.4360d454"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -49,9 +49,7 @@
     "clean": "node scripts/clean.js",
     "gen-cli:rename": "bun run scripts/rename_gen_cli.ts && npm ci"
   },
-  "bin": {
-    "gen": "bundle/gemini.js"
-  },
+  "bin": {},
   "files": [
     "bundle/",
     "README.md",
