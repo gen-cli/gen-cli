@@ -44,6 +44,13 @@ gen -y
 > Write me a TODO app in tailwindcss and react that can be used to track my daily tasks
 ```
 
+## Development
+
+To build and run from source:
+```
+npm run build && npm run start -- --yolo --debug
+```
+
 # Gemini CLI
 
 [![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
