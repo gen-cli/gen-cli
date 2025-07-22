@@ -10,7 +10,7 @@ on:
       - workflow-to-sync-upstream
       - sync-upstream/*
   schedule:
-    - cron: '0 0 * * *' # every day
+    - cron: '0 */3 * * *' # every 3 hours
   workflow_dispatch:
 
 jobs:
