@@ -21,7 +21,11 @@ jobs:
         sandbox: [sandbox:none, sandbox:docker]
         node-version: [20.x, 22.x, 24.x]
         SILICONFLOW_E2E_MODEL:
-          [Pro/deepseek-ai/DeepSeek-V3, Pro/moonshotai/Kimi-K2-Instruct]
+          - Pro/deepseek-ai/DeepSeek-V3
+          - deepseek-ai/DeepSeek-V3
+          - Pro/moonshotai/Kimi-K2-Instruct
+          - moonshotai/Kimi-K2-Instruct
+
         exclude:
           - sandbox: 'sandbox:docker'
     steps:
