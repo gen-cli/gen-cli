@@ -48,7 +48,9 @@ export class TestRig {
   }
 
   run(promptOrOptions, ...args) {
-    let command = `node ${this.bundlePath} --yolo --m ${process.env.SILICONFLOW_E2E_MODEL}`;
+    const m = process.env.SILICONFLOW_E2E_MODEL
+    const mArg = m ? `--m ${m}` : ""
+    let command = `node ${this.bundlePath} --yolo ${mArg}`;
     const execOptions = {
       cwd: this.testDir,
       encoding: 'utf-8',
