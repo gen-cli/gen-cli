@@ -7,6 +7,10 @@ on:
     branches: [main, 'e2e/*']
   merge_group:
 
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}-gen-cli-e2e
+  cancel-in-progress: true
+
 jobs:
   e2e-test-linux:
     name: ${{ matrix.SILICONFLOW_E2E_MODEL }} E2E Test (Linux) - ${{ matrix.sandbox }}
