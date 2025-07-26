@@ -9,13 +9,14 @@ on:
 
 jobs:
   e2e-test-linux:
-    name: E2E Test (Linux) - ${{ matrix.sandbox }}
+    name: E2E Test (Linux) ${{ matrix.SILICONFLOW_E2E_MODEL }} - ${{ matrix.sandbox }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         sandbox: [sandbox:none, sandbox:docker]
         node-version: [20.x, 22.x, 24.x]
+        SILICONFLOW_E2E_MODEL: [Pro/deepseek-ai/DeepSeek-V3, Pro/moonshotai/Kimi-K2-Instruct]
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -55,6 +56,7 @@ jobs:
       - name: Run E2E tests
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SILICONFLOW_E2E_MODEL: ${{ matrix.SILICONFLOW_E2E_MODEL }}
           SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
         run: npm run test:integration:${{ matrix.sandbox }} -- --verbose --keep-output
 
