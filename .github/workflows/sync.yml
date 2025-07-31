@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.SYNC_UPSTREAM_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
 
       # Step 2: run the sync action
       - name: Sync upstream changes
