@@ -34,7 +34,7 @@ jobs:
           upstream_sync_repo: google-gemini/gemini-cli
           upstream_sync_branch: main
           target_sync_branch: main
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }} # automatically generated, no need to set
+          target_repo_token: ${{ secrets.SYNC_UPSTREAM_GITHUB_TOKEN || secrets.GITHUB_TOKEN }} # automatically generated, no need to set
 
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
