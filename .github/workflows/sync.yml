@@ -18,7 +18,8 @@ jobs:
     name: Sync latest commits from upstream repo
     runs-on: ubuntu-latest
     if: ${{ github.event.repository.fork }}
-
+    outputs:
+      has_new_commits: ${{ steps.sync.outputs.has_new_commits }}
     steps:
       # Step 1: run a standard checkout action
       - name: Checkout target repo
@@ -42,4 +43,5 @@ jobs:
   ci:
     needs: [sync_latest_from_upstream]
     name: Test latest merge with CI suite
+    if: ${{ needs.sync_latest_from_upstream.outputs.has_new_commits == 'true' }}
     uses: ./.github/workflows/ci.yml
