@@ -44,4 +44,10 @@ jobs:
     needs: [sync_latest_from_upstream]
     name: Test latest merge with CI suite
     if: ${{ needs.sync_latest_from_upstream.outputs.has_new_commits == 'true' }}
+    permissions:
+      actions: read
+      contents: write
+      checks: write
+      pull-requests: write
+      security-events: write
     uses: ./.github/workflows/ci.yml
