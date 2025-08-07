@@ -1,7 +1,7 @@
 {
-  "name": "@google/gemini-cli",
-  "version": "0.1.17",
-  "description": "Gemini CLI",
+  "name": "@gen-cli/gen-cli",
+  "version": "0.1.17-nightly.250807.647b2e93",
+  "description": "gen CLI",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gen-cli/gen-cli.git"
@@ -9,7 +9,7 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "gemini": "dist/index.js"
+    "gen": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
@@ -25,10 +25,10 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.17"
+    "sandboxImageUri": "us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.1.17-nightly.250807.647b2e93"
   },
   "dependencies": {
-    "@google/gemini-cli-core": "file:../core",
+    "@gen-cli/gen-cli-core": "file:../core",
     "@google/genai": "1.9.0",
     "@iarna/toml": "^2.2.5",
     "@types/update-notifier": "^6.0.8",
@@ -74,7 +74,7 @@
     "react-dom": "^19.1.0",
     "typescript": "^5.3.3",
     "vitest": "^3.1.1",
-    "@google/gemini-cli-test-utils": "file:../test-utils"
+    "@gen-cli/gen-cli-test-utils": "file:../test-utils"
   },
   "engines": {
     "node": ">=20"
