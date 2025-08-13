@@ -1,7 +1,7 @@
 {
-  "name": "@google/gemini-cli-core",
-  "version": "0.1.18",
-  "description": "Gemini CLI Core",
+  "name": "@gen-cli/gen-cli-core",
+  "version": "0.1.18-nightly.250813.3ab94a62",
+  "description": "gen CLI Core",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gen-cli/gen-cli.git"
@@ -55,7 +55,7 @@
     "openai": "^5.7.0"
   },
   "devDependencies": {
-    "@google/gemini-cli-test-utils": "file:../test-utils",
+    "@gen-cli/gen-cli-test-utils": "file:../test-utils",
     "@types/diff": "^7.0.2",
     "@types/dotenv": "^6.1.1",
     "@types/micromatch": "^4.0.8",
