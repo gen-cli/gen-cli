@@ -37,8 +37,7 @@ jobs:
     environment:
       name: 'production-release'
       url: '${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.version.outputs.RELEASE_TAG }}'
-    if: |-
-      if: github.repository == 'gen-cli/gen-cli'
+    if: github.repository == 'gen-cli/gen-cli'
     permissions:
       contents: 'write'
       packages: 'write'
