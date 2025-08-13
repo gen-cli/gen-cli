@@ -48,11 +48,6 @@ jobs:
       - name: Run linter
         run: npm run lint:ci
 
-      - name: Rename modules to gen-cli
-        run: |
-          npm run gen-cli:rename
-          npm run format
-
       - name: Run linter on integration tests
         run: npx eslint integration-tests --max-warnings 0
 
@@ -60,6 +55,11 @@ jobs:
         run: |
           npx prettier --check integration-tests
           git diff --exit-code
+
+      - name: Rename modules to gen-cli
+        run: |
+          npm run gen-cli:rename
+          npm run format
 
       - name: Build project
         run: npm run build
