@@ -7,7 +7,7 @@ on:
   merge_group:
 
 concurrency:
-  group: ${{ github.repository }}-${{ github.ref }}-gen-cli-e2e
+  group: '${{ github.repository }}-${{ github.ref }}-gen-cli-e2e'
   cancel-in-progress: true
 
 jobs:
@@ -36,11 +36,11 @@ jobs:
           node-version: '${{ matrix.node-version }}'
           cache: 'npm'
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: 'oven-sh/setup-bun@v2'
         with:
-          bun-version: latest
+          bun-version: 'latest'
 
-      - name: Rename modules to gen-cli
+      - name: 'Rename modules to gen-cli'
         run: |
           npm run gen-cli:rename
 
@@ -72,8 +72,8 @@ jobs:
           KEEP_OUTPUT: 'true'
           SANDBOX: '${{ matrix.sandbox }}'
           VERBOSE: 'true'
-          SILICONFLOW_E2E_MODEL: ${{ matrix.SILICONFLOW_E2E_MODEL }}
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          SILICONFLOW_E2E_MODEL: '${{ matrix.SILICONFLOW_E2E_MODEL }}'
+          SILICONFLOW_API_KEY: '${{ secrets.SILICONFLOW_API_KEY }}'
         run: |-
           npm run "test:integration:${SANDBOX}"
 
@@ -100,8 +100,8 @@ jobs:
 
       - name: 'Run E2E tests'
         env:
-          SILICONFLOW_E2E_MODEL: ${{ matrix.SILICONFLOW_E2E_MODEL }}
-          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+          SILICONFLOW_E2E_MODEL: '${{ matrix.SILICONFLOW_E2E_MODEL }}'
+          SILICONFLOW_API_KEY: '${{ secrets.SILICONFLOW_API_KEY }}'
           GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}'
         run: |-
           npm run test:e2e

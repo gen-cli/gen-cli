@@ -85,9 +85,9 @@ jobs:
     name: 'Lint (Javascript)'
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: oven-sh/setup-bun@v2
+      - uses: 'oven-sh/setup-bun@v2'
         with:
-          bun-version: latest
+          bun-version: 'latest'
 
       - name: 'Checkout'
         uses: 'actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8' # ratchet:actions/checkout@v5
@@ -283,11 +283,11 @@ jobs:
           node-version: '${{ matrix.node-version }}'
           cache: 'npm'
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: 'oven-sh/setup-bun@v2'
         with:
-          bun-version: latest
+          bun-version: 'latest'
 
-      - name: Rename modules to gen-cli
+      - name: 'Rename modules to gen-cli'
         run: |
           npm run gen-cli:rename
 

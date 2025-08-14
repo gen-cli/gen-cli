@@ -1,0 +1,26 @@
+extends: relaxed
+
+rules:
+  quoted-strings:
+    quote-type: single
+    required: false
+    extra-allowed: []
+
+  braces: disable
+  brackets: disable
+  colons: disable
+  commas: disable
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  empty-lines: disable
+  hyphens: disable
+  indentation: disable
+  key-duplicates: disable
+  key-ordering: disable
+  line-length: disable
+  new-line-at-end-of-file: disable
+  new-lines: disable
+  octal-values: disable
+  trailing-spaces: disable
+  truthy: disable
