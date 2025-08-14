@@ -47,7 +47,7 @@ jobs:
       RELEASE_TAG: '${{ steps.version.outputs.RELEASE_TAG }}'
 
     steps:
-      - uses: 'oven-sh/setup-bun@v2'
+      - uses: 'oven-sh/setup-bun@v2' # ratchet:exclude
         with:
           bun-version: 'latest'
 
