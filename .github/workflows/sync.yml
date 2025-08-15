@@ -51,4 +51,5 @@ jobs:
       checks: 'write'
       pull-requests: 'write'
       security-events: 'write'
+      statuses: 'write'
     uses: ./.github/workflows/ci.yml
