@@ -17,7 +17,7 @@ import { jsonrepair } from 'jsonrepair';
 import { reportError } from '../utils/errorReporting.js';
 
 export function baseURL(): string {
-  return process.env.SILICONFLOW_BASE_URL || 'https://api.siliconflow.cn';
+  return process.env['SILICONFLOW_BASE_URL'] || 'https://api.siliconflow.cn';
 }
 /**
  * Helper function to convert ContentListUnion to Content[]
@@ -105,8 +105,8 @@ export class OpenAICompatibleContentGenerator implements ContentGenerator {
           typeof part.functionResponse.id === 'string' &&
           typeof part.functionResponse.name === 'string' &&
           part.functionResponse.response !== undefined &&
-          (typeof part.functionResponse.response.output === 'string' ||
-            typeof part.functionResponse.response.error === 'string'),
+          (typeof part.functionResponse.response['output'] === 'string' ||
+            typeof part.functionResponse.response['error'] === 'string'),
       );
 
       if (functionResponseParts.length > 0) {

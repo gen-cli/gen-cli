@@ -115,7 +115,7 @@ export async function createContentGenerator(
     },
   };
   if (config.authType === AuthType.USE_SILICONFLOW) {
-    const apiKey = process.env.SILICONFLOW_API_KEY;
+    const apiKey = process.env['SILICONFLOW_API_KEY'];
     if (!apiKey) {
       throw new Error(
         'SILICONFLOW_API_KEY environment variable is not set. Please set it to use SiliconFlow.',

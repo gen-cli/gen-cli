@@ -5,7 +5,7 @@
  */
 
 export function isSiliconFlow(): boolean {
-  return !!(!process.env.CI || process.env.SILICONFLOW_API_KEY);
+  return !!(!process.env['CI'] || process.env['SILICONFLOW_API_KEY']);
 }
 
 export const DEFAULT_MODEL = isSiliconFlow()
