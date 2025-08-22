@@ -21,7 +21,8 @@ import { Settings, MemoryImportFormat } from './settingsSchema.js';
 
 export type { Settings, MemoryImportFormat };
 
-export const SETTINGS_DIRECTORY_NAME = '.gen-cli';
+const CUSTOM_DIRECTORY_NAME = process.env['CI'] ? '.gemini' : '.gen-cli';
+export const SETTINGS_DIRECTORY_NAME = CUSTOM_DIRECTORY_NAME;
 
 export const USER_SETTINGS_PATH = Storage.getGlobalSettingsPath();
 export const USER_SETTINGS_DIR = path.dirname(USER_SETTINGS_PATH);
