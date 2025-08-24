@@ -44,6 +44,7 @@ export interface ContentGenerator {
 
 export enum AuthType {
   LOGIN_WITH_GOOGLE = 'oauth-personal',
+  LOGIN_WITH_GOOGLE_GCA = 'oauth-gca',
   USE_GEMINI = 'gemini-api-key',
   USE_SILICONFLOW = 'siliconflow-api-key',
   USE_VERTEX_AI = 'vertex-ai',
@@ -79,6 +80,7 @@ export function createContentGeneratorConfig(
   // If we are using Google auth or we are in Cloud Shell, there is nothing else to validate for now
   if (
     authType === AuthType.LOGIN_WITH_GOOGLE ||
+    authType === AuthType.LOGIN_WITH_GOOGLE_GCA ||
     authType === AuthType.CLOUD_SHELL
   ) {
     return contentGeneratorConfig;
@@ -125,6 +127,7 @@ export async function createContentGenerator(
   }
   if (
     config.authType === AuthType.LOGIN_WITH_GOOGLE ||
+    config.authType === AuthType.LOGIN_WITH_GOOGLE_GCA ||
     config.authType === AuthType.CLOUD_SHELL
   ) {
     const httpOptions = { headers: baseHeaders };
