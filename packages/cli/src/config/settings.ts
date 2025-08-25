@@ -41,12 +41,23 @@ export function getSystemSettingsPath(): string {
   }
 }
 
+export function getSystemDefaultsPath(): string {
+  if (process.env['GEMINI_CLI_SYSTEM_DEFAULTS_PATH']) {
+    return process.env['GEMINI_CLI_SYSTEM_DEFAULTS_PATH'];
+  }
+  return path.join(
+    path.dirname(getSystemSettingsPath()),
+    'system-defaults.json',
+  );
+}
+
 export type { DnsResolutionOrder } from './settingsSchema.js';
 
 export enum SettingScope {
   User = 'User',
   Workspace = 'Workspace',
   System = 'System',
+  SystemDefaults = 'SystemDefaults',
 }
 
 export interface CheckpointingSettings {
@@ -74,6 +85,7 @@ export interface SettingsFile {
 
 function mergeSettings(
   system: Settings,
+  systemDefaults: Settings,
   user: Settings,
   workspace: Settings,
   isTrusted: boolean,
@@ -84,29 +96,43 @@ function mergeSettings(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { folderTrust, ...safeWorkspaceWithoutFolderTrust } = safeWorkspace;
 
+  // Settings are merged with the following precedence (last one wins for
+  // single values):
+  // 1. System Defaults
+  // 2. User Settings
+  // 3. Workspace Settings
+  // 4. System Settings (as overrides)
+  //
+  // For properties that are arrays (e.g., includeDirectories), the arrays
+  // are concatenated. For objects (e.g., customThemes), they are merged.
   return {
+    ...systemDefaults,
     ...user,
     ...safeWorkspaceWithoutFolderTrust,
     ...system,
     customThemes: {
+      ...(systemDefaults.customThemes || {}),
       ...(user.customThemes || {}),
       ...(safeWorkspace.customThemes || {}),
       ...(system.customThemes || {}),
     },
     mcpServers: {
+      ...(systemDefaults.mcpServers || {}),
       ...(user.mcpServers || {}),
       ...(safeWorkspace.mcpServers || {}),
       ...(system.mcpServers || {}),
     },
     includeDirectories: [
-      ...(system.includeDirectories || []),
+      ...(systemDefaults.includeDirectories || []),
       ...(user.includeDirectories || []),
       ...(safeWorkspace.includeDirectories || []),
+      ...(system.includeDirectories || []),
     ],
     chatCompression: {
-      ...(system.chatCompression || {}),
+      ...(systemDefaults.chatCompression || {}),
       ...(user.chatCompression || {}),
       ...(safeWorkspace.chatCompression || {}),
+      ...(system.chatCompression || {}),
     },
   };
 }
@@ -114,12 +140,14 @@ function mergeSettings(
 export class LoadedSettings {
   constructor(
     system: SettingsFile,
+    systemDefaults: SettingsFile,
     user: SettingsFile,
     workspace: SettingsFile,
     errors: SettingsError[],
     isTrusted: boolean,
   ) {
     this.system = system;
+    this.systemDefaults = systemDefaults;
     this.user = user;
     this.workspace = workspace;
     this.errors = errors;
@@ -128,6 +156,7 @@ export class LoadedSettings {
   }
 
   readonly system: SettingsFile;
+  readonly systemDefaults: SettingsFile;
   readonly user: SettingsFile;
   readonly workspace: SettingsFile;
   readonly errors: SettingsError[];
@@ -142,6 +171,7 @@ export class LoadedSettings {
   private computeMergedSettings(): Settings {
     return mergeSettings(
       this.system.settings,
+      this.systemDefaults.settings,
       this.user.settings,
       this.workspace.settings,
       this.isTrusted,
@@ -156,6 +186,8 @@ export class LoadedSettings {
         return this.workspace;
       case SettingScope.System:
         return this.system;
+      case SettingScope.SystemDefaults:
+        return this.systemDefaults;
       default:
         throw new Error(`Invalid scope: ${scope}`);
     }
@@ -332,10 +364,12 @@ export function loadEnvironment(settings?: Settings): void {
  */
 export function loadSettings(workspaceDir: string): LoadedSettings {
   let systemSettings: Settings = {};
+  let systemDefaultSettings: Settings = {};
   let userSettings: Settings = {};
   let workspaceSettings: Settings = {};
   const settingsErrors: SettingsError[] = [];
   const systemSettingsPath = getSystemSettingsPath();
+  const systemDefaultsPath = getSystemDefaultsPath();
 
   // Resolve paths to their canonical representation to handle symlinks
   const resolvedWorkspaceDir = path.resolve(workspaceDir);
@@ -366,6 +400,25 @@ export function loadSettings(workspaceDir: string): LoadedSettings {
     settingsErrors.push({
       message: getErrorMessage(error),
       path: systemSettingsPath,
+    });
+  }
+
+  // Load system defaults
+  try {
+    if (fs.existsSync(systemDefaultsPath)) {
+      const systemDefaultsContent = fs.readFileSync(
+        systemDefaultsPath,
+        'utf-8',
+      );
+      const parsedSystemDefaults = JSON.parse(
+        stripJsonComments(systemDefaultsContent),
+      ) as Settings;
+      systemDefaultSettings = resolveEnvVarsInObject(parsedSystemDefaults);
+    }
+  } catch (error: unknown) {
+    settingsErrors.push({
+      message: getErrorMessage(error),
+      path: systemDefaultsPath,
     });
   }
 
@@ -420,6 +473,7 @@ export function loadSettings(workspaceDir: string): LoadedSettings {
   // Create a temporary merged settings object to pass to loadEnvironment.
   const tempMergedSettings = mergeSettings(
     systemSettings,
+    systemDefaultSettings,
     userSettings,
     workspaceSettings,
     isTrusted,
@@ -439,6 +493,10 @@ export function loadSettings(workspaceDir: string): LoadedSettings {
     {
       path: systemSettingsPath,
       settings: systemSettings,
+    },
+    {
+      path: systemDefaultsPath,
+      settings: systemDefaultSettings,
     },
     {
       path: USER_SETTINGS_PATH,
