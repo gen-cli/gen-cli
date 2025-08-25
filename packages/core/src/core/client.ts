@@ -47,13 +47,13 @@ import { ideContext } from '../ide/ideContext.js';
 import {
   logChatCompression,
   logNextSpeakerCheck,
+  logMalformedJsonResponse,
 } from '../telemetry/loggers.js';
 import {
   makeChatCompressionEvent,
   MalformedJsonResponseEvent,
   NextSpeakerCheckEvent,
 } from '../telemetry/types.js';
-import { ClearcutLogger } from '../telemetry/clearcut-logger/clearcut-logger.js';
 import { IdeContext, File } from '../ide/ideContext.js';
 
 function isThinkingSupported(model: string) {
@@ -618,7 +618,8 @@ export class GeminiClient {
       const prefix = '```json';
       const suffix = '```';
       if (text.startsWith(prefix) && text.endsWith(suffix)) {
-        ClearcutLogger.getInstance(this.config)?.logMalformedJsonResponseEvent(
+        logMalformedJsonResponse(
+          this.config,
           new MalformedJsonResponseEvent(modelToUse),
         );
         text = text
