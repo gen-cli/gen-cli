@@ -5,19 +5,21 @@
  */
 
 import { OpenAICompatibleContentGenerator } from './openAICompatibleContentGenerator.js';
-import {
+
+import type {
   CountTokensResponse,
   GenerateContentResponse,
   GenerateContentParameters,
   CountTokensParameters,
   EmbedContentResponse,
   EmbedContentParameters,
-  GoogleGenAI,
 } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
-import { Config } from '../config/config.js';
-import { UserTierId } from '../code_assist/types.js';
+import type { Config } from '../config/config.js';
+
+import type { UserTierId } from '../code_assist/types.js';
 import { LoggingContentGenerator } from './loggingContentGenerator.js';
 import { InstallationManager } from '../utils/installationManager.js';
 
@@ -44,7 +46,6 @@ export interface ContentGenerator {
 
 export enum AuthType {
   LOGIN_WITH_GOOGLE = 'oauth-personal',
-  LOGIN_WITH_GOOGLE_GCA = 'oauth-gca',
   USE_GEMINI = 'gemini-api-key',
   USE_SILICONFLOW = 'siliconflow-api-key',
   USE_VERTEX_AI = 'vertex-ai',
@@ -80,7 +81,6 @@ export function createContentGeneratorConfig(
   // If we are using Google auth or we are in Cloud Shell, there is nothing else to validate for now
   if (
     authType === AuthType.LOGIN_WITH_GOOGLE ||
-    authType === AuthType.LOGIN_WITH_GOOGLE_GCA ||
     authType === AuthType.CLOUD_SHELL
   ) {
     return contentGeneratorConfig;
@@ -127,7 +127,6 @@ export async function createContentGenerator(
   }
   if (
     config.authType === AuthType.LOGIN_WITH_GOOGLE ||
-    config.authType === AuthType.LOGIN_WITH_GOOGLE_GCA ||
     config.authType === AuthType.CLOUD_SHELL
   ) {
     const httpOptions = { headers: baseHeaders };
