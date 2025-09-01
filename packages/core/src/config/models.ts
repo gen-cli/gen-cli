@@ -25,3 +25,6 @@ export const DEFAULT_GEMINI_MODEL = DEFAULT_MODEL;
 export const DEFAULT_GEMINI_FLASH_MODEL = DEFAULT_FLASH_MODEL;
 export const DEFAULT_GEMINI_FLASH_LITE_MODEL = DEFAULT_FLASH_LITE_MODEL;
 export const DEFAULT_GEMINI_EMBEDDING_MODEL = DEFAULT_EMBEDDING_MODEL;
+
+// Some thinking models do not default to dynamic thinking which is done by a value of -1
+export const DEFAULT_THINKING_MODE = -1;
