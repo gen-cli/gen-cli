@@ -1,9 +1,11 @@
 import {
   CountTokensResponse,
   GenerateContentResponse,
+  EmbedContentResponse,
+} from '@google/genai';
+import type {
   GenerateContentParameters,
   CountTokensParameters,
-  EmbedContentResponse,
   EmbedContentParameters,
   Content,
   Part,
@@ -11,7 +13,7 @@ import {
   PartUnion,
 } from '@google/genai';
 import OpenAI from 'openai';
-import { ContentGenerator } from './contentGenerator.js';
+import type { ContentGenerator } from './contentGenerator.js';
 import { jsonrepair } from 'jsonrepair';
 
 import { reportError } from '../utils/errorReporting.js';
