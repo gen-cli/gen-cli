@@ -65,7 +65,7 @@ export function AuthDialog({
     }
     return null;
   });
-  const SiliconFlowItems = [
+    const SiliconFlowItems = [
     { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
   ];
   const itemsUpstream = [
@@ -87,9 +87,15 @@ export function AuthDialog({
     },
     { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
   ];
-  const items = isSiliconFlow() ? SiliconFlowItems : itemsUpstream;
+  let items = isSiliconFlow() ? SiliconFlowItems : itemsUpstream;
 
-  const initialAuthIndex = items.findIndex((item) => {
+  if (settings.merged.security?.auth?.enforcedType) {
+    items = items.filter(
+      (item) => item.value === settings.merged.security?.auth?.enforcedType,
+    );
+  }
+
+  let initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.security?.auth?.selectedType) {
       return item.value === settings.merged.security.auth.selectedType;
     }
@@ -107,6 +113,9 @@ export function AuthDialog({
 
     return item.value === AuthType.LOGIN_WITH_GOOGLE;
   });
+  if (settings.merged.security?.auth?.enforcedType) {
+    initialAuthIndex = 0;
+  }
 
   const handleAuthSelect = (authMethod: AuthType) => {
     const error = validateAuthMethod(authMethod);
