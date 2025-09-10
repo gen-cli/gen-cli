@@ -5,7 +5,6 @@
  */
 
 import { execSync, spawn } from 'node:child_process';
-import { parse } from 'shell-quote';
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -182,10 +181,11 @@ export class TestRig {
       | { prompt?: string; stdin?: string; stdinDoesNotEnd?: boolean },
     ...args: string[]
   ): Promise<string> {
-    const m = process.env.SILICONFLOW_E2E_MODEL;
-    const mArg = m ? `--m ${m}` : '';
-    let command = `node ${this.bundlePath} --yolo`;
-    command += ` ${mArg}`;
+    const m = process.env['SILICONFLOW_E2E_MODEL'];
+    const commandArgs = [this.bundlePath, '--yolo'];
+    if (m) {
+      commandArgs.push('--m', m);
+    }
     const execOptions: {
       cwd: string;
       encoding: 'utf-8';
@@ -196,25 +196,22 @@ export class TestRig {
     };
 
     if (typeof promptOrOptions === 'string') {
-      command += ` --prompt ${JSON.stringify(promptOrOptions)}`;
+      commandArgs.push('--prompt', promptOrOptions);
     } else if (
       typeof promptOrOptions === 'object' &&
       promptOrOptions !== null
     ) {
       if (promptOrOptions.prompt) {
-        command += ` --prompt ${JSON.stringify(promptOrOptions.prompt)}`;
+        commandArgs.push('--prompt', promptOrOptions.prompt);
       }
       if (promptOrOptions.stdin) {
         execOptions.input = promptOrOptions.stdin;
       }
     }
 
-    command += ` ${args.join(' ')}`;
+    commandArgs.push(...args);
 
-    const commandArgs = parse(command);
-    const node = commandArgs.shift() as string;
-
-    const child = spawn(node, commandArgs as string[], {
+    const child = spawn('node', commandArgs, {
       cwd: this.testDir!,
       stdio: 'pipe',
     });
