@@ -22,9 +22,9 @@ import { AuthState } from '../types.js';
 import { runExitCleanup } from '../../utils/cleanup.js';
 import { validateAuthMethodWithSettings } from './useAuth.js';
 
-const SiliconFlowItems = [
-   { label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW },
-];
+const SiliconFlowItems = isSiliconFlow()
+  ? [{ label: 'SiliconFlow API Key', value: AuthType.USE_SILICONFLOW }]
+  : [];
 
 interface AuthDialogProps {
   config: Config;
@@ -41,8 +41,7 @@ export function AuthDialog({
   authError,
   onAuthError,
 }: AuthDialogProps): React.JSX.Element {
-
-  const itemsUpstream = [
+  let items = [
     {
       label: 'Login with Google',
       value: AuthType.LOGIN_WITH_GOOGLE,
@@ -60,8 +59,9 @@ export function AuthDialog({
       value: AuthType.USE_GEMINI,
     },
     { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
-  ];
-  let items = isSiliconFlow() ? SiliconFlowItems : itemsUpstream;
+  ]
+    .filter(() => !isSiliconFlow())
+    .concat(SiliconFlowItems);
 
   if (settings.merged.security?.auth?.enforcedType) {
     items = items.filter(
@@ -70,6 +70,9 @@ export function AuthDialog({
   }
 
   let defaultAuthType = null;
+  if (isSiliconFlow()) {
+    defaultAuthType = AuthType.USE_SILICONFLOW;
+  }
   const defaultAuthTypeEnv = process.env['GEMINI_DEFAULT_AUTH_TYPE'];
   if (
     defaultAuthTypeEnv &&

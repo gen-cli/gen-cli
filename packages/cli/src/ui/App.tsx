@@ -13,9 +13,6 @@ import { Composer } from './components/Composer.js';
 import { useUIState } from './contexts/UIStateContext.js';
 import { QuittingDisplay } from './components/QuittingDisplay.js';
 
-// add this line to prevent merge conflic
-import { EndpointDisplay } from './components/EndpointDisplay.js';
-
 export const App = () => {
   const uiState = useUIState();
 
